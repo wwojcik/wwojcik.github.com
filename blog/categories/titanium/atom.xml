@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Titanium | Wojciech Wójcik]]></title>
   <link href="http://wwojcik.github.com/blog/categories/titanium/atom.xml" rel="self"/>
   <link href="http://wwojcik.github.com/"/>
-  <updated>2012-07-30T18:52:09+02:00</updated>
+  <updated>2012-07-30T19:09:30+02:00</updated>
   <id>http://wwojcik.github.com/</id>
   <author>
     <name><![CDATA[Wojciech Wójcik]]></name>
@@ -12,6 +12,69 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Oceń aplikacje dla Titanium Mobile]]></title>
+    <link href="http://wwojcik.github.com/blog/2012/07/30/ocen-aplikacje-dla-titanium-mobile/"/>
+    <updated>2012-07-30T19:04:00+02:00</updated>
+    <id>http://wwojcik.github.com/blog/2012/07/30/ocen-aplikacje-dla-titanium-mobile</id>
+    <content type="html"><![CDATA[<p>W taki prosty sposób można dorobić obsługę Rate my application.
+Po drugim uruchomieniu aplikacji pojawia się  zapytanie o chęć oceny aplikacji.
+Kolejna prośba po naciśnięciu Remind Me Later pojawi się kolejnego dnia.</p>
+
+<!-- more -->
+
+
+<p><div><script src='https://gist.github.com/1011043.js?file='></script>
+<noscript><pre><code>/**
+ * The following snippet will ask the user to rate your app the second time they launch it.
+ * It lets the user rate it now, &quot;Remind Me Later&quot; or never rate the app.
+ */
+var win = Ti.UI.createWindow({ backgroundColor: '#fff' });
+win.addEventListener('open', checkReminderToRate);
+win.add(Ti.UI.createLabel({ text: 'This is a simple app that will remind you to rate it.' }));
+win.open();
+
+function checkReminderToRate() {
+    var now = new Date().getTime();
+    var remindToRate = Ti.App.Properties.getString('RemindToRate');
+    if (!remindToRate) {
+        Ti.App.Properties.setString('RemindToRate', now);
+    }
+    else if (remindToRate &lt; now) {
+        var alertDialog = Titanium.UI.createAlertDialog({
+            title: 'Please rate this app!',
+            message: 'Would you take a moment to rate this app?',
+            buttonNames: ['OK', 'Remind Me Later', 'Never'],
+            cancel: 2
+        });
+        alertDialog.addEventListener('click', function(evt) {
+            switch (evt.index) {
+                case 0:
+                    Ti.App.Properties.setString('RemindToRate', Number.MAX_VALUE);
+                    // NOTE: replace this with your own iTunes link; also, this won't WON'T WORK IN THE SIMULATOR!
+                    if (Ti.Android) {
+                        Ti.Platform.openURL('URL TO YOUR APP IN THE GOOGLE MARKETPLACE');
+                    }
+                    else {
+                        Ti.Platform.openURL('URL TO YOUR APP IN THE ITUNES STORE');
+                    }
+                    break;
+                case 1:
+                    // &quot;Remind Me Later&quot;? Ok, we'll remind them tomorrow when they launch the app.
+                    Ti.App.Properties.setString('RemindToRate', now + (1000 * 60 * 60 * 24));
+                    break;
+                case 2:
+                    Ti.App.Properties.setString('RemindToRate', Number.MAX_VALUE);
+                    break;
+            }
+        });
+        alertDialog.show();
+    }
+}</code></pre></noscript></div>
+</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Połączenie Titanium i Foursquare]]></title>

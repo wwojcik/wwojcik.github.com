@@ -5,13 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - Wojciech Wójcik</title>
+  <title>Oceń aplikacje dla Titanium Mobile - Wojciech Wójcik</title>
   <meta name="author" content="Wojciech Wójcik">
 
   
-  <meta name="description" content="Blog Archive 2012 Oceń aplikacje dla Titanium Mobile
-Jul 30 2012 posted in Titanium Połączenie Titanium i Foursquare
-Jul 30 2012 posted in Titanium &hellip;">
+  <meta name="description" content="W taki prosty sposób można dorobić obsługę Rate my application.
+Po drugim uruchomieniu aplikacji pojawia się zapytanie o chęć oceny aplikacji. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +19,7 @@ Jul 30 2012 posted in Titanium &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://wwojcik.github.com/blog/archives/">
+  <link rel="canonical" href="http://wwojcik.github.com/blog/2012/07/30/ocen-aplikacje-dla-titanium-mobile/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -66,49 +65,142 @@ Jul 30 2012 posted in Titanium &hellip;">
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">Oceń Aplikacje Dla Titanium Mobile</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-30T19:04:00+02:00" pubdate data-updated="true">Jul 30<span>th</span>, 2012</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><p>W taki prosty sposób można dorobić obsługę Rate my application.
+Po drugim uruchomieniu aplikacji pojawia się  zapytanie o chęć oceny aplikacji.
+Kolejna prośba po naciśnięciu Remind Me Later pojawi się kolejnego dnia.</p>
 
-  
-  <h2>2012</h2>
-
-<article>
-  
-<h1><a href="/blog/2012/07/30/ocen-aplikacje-dla-titanium-mobile/">Oceń aplikacje dla Titanium Mobile</a></h1>
-<time datetime="2012-07-30T19:04:00+02:00" pubdate><span class='month'>Jul</span> <span class='day'>30</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/titanium/'>Titanium</a></span>
-</footer>
+<!-- more -->
 
 
-</article>
+<div><script src='https://gist.github.com/1011043.js?file='></script>
+<noscript><pre><code>/**
+ * The following snippet will ask the user to rate your app the second time they launch it.
+ * It lets the user rate it now, &quot;Remind Me Later&quot; or never rate the app.
+ */
+var win = Ti.UI.createWindow({ backgroundColor: '#fff' });
+win.addEventListener('open', checkReminderToRate);
+win.add(Ti.UI.createLabel({ text: 'This is a simple app that will remind you to rate it.' }));
+win.open();
 
-
-
-<article>
-  
-<h1><a href="/blog/2012/07/30/polaczenie-titanium-i-foursquare/">Połączenie Titanium i Foursquare</a></h1>
-<time datetime="2012-07-30T17:10:00+02:00" pubdate><span class='month'>Jul</span> <span class='day'>30</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/titanium/'>Titanium</a></span>
-</footer>
-
-
-</article>
+function checkReminderToRate() {
+    var now = new Date().getTime();
+    var remindToRate = Ti.App.Properties.getString('RemindToRate');
+    if (!remindToRate) {
+        Ti.App.Properties.setString('RemindToRate', now);
+    }
+    else if (remindToRate &lt; now) {
+        var alertDialog = Titanium.UI.createAlertDialog({
+            title: 'Please rate this app!',
+            message: 'Would you take a moment to rate this app?',
+            buttonNames: ['OK', 'Remind Me Later', 'Never'],
+            cancel: 2
+        });
+        alertDialog.addEventListener('click', function(evt) {
+            switch (evt.index) {
+                case 0:
+                    Ti.App.Properties.setString('RemindToRate', Number.MAX_VALUE);
+                    // NOTE: replace this with your own iTunes link; also, this won't WON'T WORK IN THE SIMULATOR!
+                    if (Ti.Android) {
+                        Ti.Platform.openURL('URL TO YOUR APP IN THE GOOGLE MARKETPLACE');
+                    }
+                    else {
+                        Ti.Platform.openURL('URL TO YOUR APP IN THE ITUNES STORE');
+                    }
+                    break;
+                case 1:
+                    // &quot;Remind Me Later&quot;? Ok, we'll remind them tomorrow when they launch the app.
+                    Ti.App.Properties.setString('RemindToRate', now + (1000 * 60 * 60 * 24));
+                    break;
+                case 2:
+                    Ti.App.Properties.setString('RemindToRate', Number.MAX_VALUE);
+                    break;
+            }
+        });
+        alertDialog.show();
+    }
+}</code></pre></noscript></div>
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Wojciech Wójcik</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-30T19:04:00+02:00" pubdate data-updated="true">Jul 30<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/titanium/'>Titanium</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://wwojcik.github.com/blog/2012/07/30/ocen-aplikacje-dla-titanium-mobile/" data-via="wojtaswojcik" data-counturl="http://wwojcik.github.com/blog/2012/07/30/ocen-aplikacje-dla-titanium-mobile/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/07/30/polaczenie-titanium-i-foursquare/" title="Previous Post: Połączenie Titanium i Foursquare">&laquo; Połączenie Titanium i Foursquare</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>
