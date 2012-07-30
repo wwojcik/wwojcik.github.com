@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Wojciech Wójcik]]></title>
-  <link href="http://wwojcik.github.com/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Titanium | Wojciech Wójcik]]></title>
+  <link href="http://wwojcik.github.com/blog/categories/titanium/atom.xml" rel="self"/>
   <link href="http://wwojcik.github.com/"/>
   <updated>2012-07-30T17:56:21+02:00</updated>
   <id>http://wwojcik.github.com/</id>
@@ -23,7 +23,7 @@
 <!-- more -->
 
 
-<div><script src='https://gist.github.com/885560.js?file='></script>
+<p><div><script src='https://gist.github.com/885560.js?file='></script>
 <noscript><pre><code>/**
 *
 *
@@ -54,12 +54,12 @@ FOURSQModule.login(loginSuccess, function(e) {
 
 function loginSuccess(e) {
     FOURSQModule.callMethod(&quot;users/self&quot;, {}, onSuccess_self, function(e) {
-        Titanium.UI.createAlertDialog({
-            title: &quot;users/self: METHOD FAILED FAILED&quot;,
-            message: e,
-            buttonNames: ['OK']
-        }).show();
-    });
+	    Titanium.UI.createAlertDialog({
+	        title: &quot;users/self: METHOD FAILED FAILED&quot;,
+	        message: e,
+	        buttonNames: ['OK']
+	    }).show();
+	});
 };
 
 function onSuccess_self(xhr) {
@@ -70,9 +70,7 @@ function onSuccess_self(xhr) {
     Ti.API.info(&quot; Badges    -&gt; &quot; + respJSON.response.user.badges.count);
     Ti.API.info(&quot; Checkins  -&gt; &quot; + respJSON.response.user.checkins.count);
 };</code></pre></noscript></div>
-
-
-
+</p>
 ]]></content>
   </entry>
   
