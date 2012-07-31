@@ -4,7 +4,7 @@
   <title><![CDATA[Wojciech Wójcik]]></title>
   <link href="http://wwojcik.github.com/atom.xml" rel="self"/>
   <link href="http://wwojcik.github.com/"/>
-  <updated>2012-07-31T10:47:05+02:00</updated>
+  <updated>2012-07-31T14:57:45+02:00</updated>
   <id>http://wwojcik.github.com/</id>
   <author>
     <name><![CDATA[Wojciech Wójcik]]></name>
@@ -12,6 +12,18 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Klient SIP z wykorzystaniem sip-js]]></title>
+    <link href="http://wwojcik.github.com/blog/2012/07/31/klient-sip-z-wykorzystaniem-sip-js/"/>
+    <updated>2012-07-31T14:45:00+02:00</updated>
+    <id>http://wwojcik.github.com/blog/2012/07/31/klient-sip-z-wykorzystaniem-sip-js</id>
+    <content type="html"><![CDATA[<p>Jak łatwo można stworzyć webowego klienta SIP z wykorzystaniem <a href="http://code.google.com/p/sip-js/">sip-js</a> można zobaczyć na tym filmie.</p>
+
+<div class="embed video YouTube"><iframe width="459" height="344" src="http://www.youtube.com/embed/tfwmBgJHpWs?fs=1&feature=oembed" frameborder="0" allowfullscreen></iframe></div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ustawienie praw do katalogów w Symfony2]]></title>
