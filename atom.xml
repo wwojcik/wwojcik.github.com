@@ -4,7 +4,7 @@
   <title><![CDATA[Wojciech Wójcik]]></title>
   <link href="http://wwojcik.github.com/atom.xml" rel="self"/>
   <link href="http://wwojcik.github.com/"/>
-  <updated>2012-07-31T09:58:27+02:00</updated>
+  <updated>2012-07-31T10:47:05+02:00</updated>
   <id>http://wwojcik.github.com/</id>
   <author>
     <name><![CDATA[Wojciech Wójcik]]></name>
@@ -12,6 +12,30 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ustawienie praw do katalogów w Symfony2]]></title>
+    <link href="http://wwojcik.github.com/blog/2012/07/31/ustawienie-praw-do-katalogow-w-symfony2/"/>
+    <updated>2012-07-31T10:41:00+02:00</updated>
+    <id>http://wwojcik.github.com/blog/2012/07/31/ustawienie-praw-do-katalogow-w-symfony2</id>
+    <content type="html"><![CDATA[<p>Prosty skrypt, który po uruchomieniu w katalogu projektu w Symfony2 ustawia poprawnie uprawnienia do katalogów</p>
+
+<!-- more -->
+
+
+<div><script src='https://gist.github.com/1560845.js?file='></script>
+<noscript><pre><code>#!/bin/sh
+
+USER=$(whoami)
+APACHE_USER=$(ps axho user,comm|grep -E &quot;httpd|apache&quot;|uniq|grep -v &quot;root&quot;|awk 'END {print $1}')
+
+sudo chmod +a &quot;$USER allow delete,write,append,file_inherit,directory_inherit&quot; app/cache app/logs
+sudo chmod +a &quot;$APACHE_USER allow delete,write,append,file_inherit,directory_inherit&quot; app/cache app/logs
+
+echo &quot;app/cache &amp; app/logs been properly chmod'ed for $USER and $APACHE_USER&quot;</code></pre></noscript></div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Konfiguracja serwera NGINX dla projektów w Symfony]]></title>

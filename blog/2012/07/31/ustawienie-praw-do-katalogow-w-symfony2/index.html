@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Oceń aplikacje dla Titanium Mobile - Wojciech Wójcik</title>
+  <title>Ustawienie praw do katalogów w Symfony2 - Wojciech Wójcik</title>
   <meta name="author" content="Wojciech Wójcik">
 
   
-  <meta name="description" content="W taki prosty sposób można dorobić obsługę Rate my application.
-Po drugim uruchomieniu aplikacji pojawia się zapytanie o chęć oceny aplikacji. &hellip;">
+  <meta name="description" content="Prosty skrypt, który po uruchomieniu w katalogu projektu w Symfony2 ustawia poprawnie uprawnienia do katalogów #!/bin/sh USER=$(whoami)
+APACHE_USER &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@ Po drugim uruchomieniu aplikacji pojawia się zapytanie o chęć oceny aplikacji
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://wwojcik.github.com/blog/2012/07/30/ocen-aplikacje-dla-titanium-mobile">
+  <link rel="canonical" href="http://wwojcik.github.com/blog/2012/07/31/ustawienie-praw-do-katalogow-w-symfony2">
   <link href="/favicon.ico" rel="icon">
   
   <link href="/assets/bootstrap/css/spacelab.min.css" rel="stylesheet" type="text/css">
@@ -99,7 +99,7 @@ Po drugim uruchomieniu aplikacji pojawia się zapytanie o chęć oceny aplikacji
     
   <header>
     
-      <h1 class="entry-title">Oceń Aplikacje Dla Titanium Mobile</h1>
+      <h1 class="entry-title">Ustawienie Praw Do Katalogów W Symfony2</h1>
     
     
       <p class="meta">
@@ -115,7 +115,7 @@ Po drugim uruchomieniu aplikacji pojawia się zapytanie o chęć oceny aplikacji
   
 
 
-<time datetime="2012-07-30T19:04:00+02:00" pubdate data-updated="true">Jul 30<span>th</span>, 2012</time>
+<time datetime="2012-07-31T10:41:00+02:00" pubdate data-updated="true">Jul 31<span>st</span>, 2012</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -126,60 +126,21 @@ Po drugim uruchomieniu aplikacji pojawia się zapytanie o chęć oceny aplikacji
 
   
   
-  <div class="entry-content"><p>W taki prosty sposób można dorobić obsługę Rate my application.
-Po drugim uruchomieniu aplikacji pojawia się  zapytanie o chęć oceny aplikacji.
-Kolejna prośba po naciśnięciu Remind Me Later pojawi się kolejnego dnia.</p>
+  <div class="entry-content"><p>Prosty skrypt, który po uruchomieniu w katalogu projektu w Symfony2 ustawia poprawnie uprawnienia do katalogów</p>
 
 <!-- more -->
 
 
-<div><script src='https://gist.github.com/1011043.js?file='></script>
-<noscript><pre><code>/**
- * The following snippet will ask the user to rate your app the second time they launch it.
- * It lets the user rate it now, &quot;Remind Me Later&quot; or never rate the app.
- */
-var win = Ti.UI.createWindow({ backgroundColor: '#fff' });
-win.addEventListener('open', checkReminderToRate);
-win.add(Ti.UI.createLabel({ text: 'This is a simple app that will remind you to rate it.' }));
-win.open();
+<div><script src='https://gist.github.com/1560845.js?file='></script>
+<noscript><pre><code>#!/bin/sh
 
-function checkReminderToRate() {
-    var now = new Date().getTime();
-    var remindToRate = Ti.App.Properties.getString('RemindToRate');
-    if (!remindToRate) {
-        Ti.App.Properties.setString('RemindToRate', now);
-    }
-    else if (remindToRate &lt; now) {
-        var alertDialog = Titanium.UI.createAlertDialog({
-            title: 'Please rate this app!',
-            message: 'Would you take a moment to rate this app?',
-            buttonNames: ['OK', 'Remind Me Later', 'Never'],
-            cancel: 2
-        });
-        alertDialog.addEventListener('click', function(evt) {
-            switch (evt.index) {
-                case 0:
-                    Ti.App.Properties.setString('RemindToRate', Number.MAX_VALUE);
-                    // NOTE: replace this with your own iTunes link; also, this won't WON'T WORK IN THE SIMULATOR!
-                    if (Ti.Android) {
-                        Ti.Platform.openURL('URL TO YOUR APP IN THE GOOGLE MARKETPLACE');
-                    }
-                    else {
-                        Ti.Platform.openURL('URL TO YOUR APP IN THE ITUNES STORE');
-                    }
-                    break;
-                case 1:
-                    // &quot;Remind Me Later&quot;? Ok, we'll remind them tomorrow when they launch the app.
-                    Ti.App.Properties.setString('RemindToRate', now + (1000 * 60 * 60 * 24));
-                    break;
-                case 2:
-                    Ti.App.Properties.setString('RemindToRate', Number.MAX_VALUE);
-                    break;
-            }
-        });
-        alertDialog.show();
-    }
-}</code></pre></noscript></div>
+USER=$(whoami)
+APACHE_USER=$(ps axho user,comm|grep -E &quot;httpd|apache&quot;|uniq|grep -v &quot;root&quot;|awk 'END {print $1}')
+
+sudo chmod +a &quot;$USER allow delete,write,append,file_inherit,directory_inherit&quot; app/cache app/logs
+sudo chmod +a &quot;$APACHE_USER allow delete,write,append,file_inherit,directory_inherit&quot; app/cache app/logs
+
+echo &quot;app/cache &amp; app/logs been properly chmod'ed for $USER and $APACHE_USER&quot;</code></pre></noscript></div>
 
 </div>
 
@@ -205,12 +166,12 @@ function checkReminderToRate() {
   
 
 
-<time datetime="2012-07-30T19:04:00+02:00" pubdate data-updated="true">Jul 30<span>th</span>, 2012</time>
+<time datetime="2012-07-31T10:41:00+02:00" pubdate data-updated="true">Jul 31<span>st</span>, 2012</time>
         
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/titanium/'>Titanium</a>
+    <a class='category' href='/blog/categories/symfony/'>Symfony</a>
   
 </span>
 
@@ -220,7 +181,7 @@ function checkReminderToRate() {
         <div class="sharing">
   <br/>
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://wwojcik.github.com/blog/2012/07/30/ocen-aplikacje-dla-titanium-mobile/" data-via="wojtaswojcik" data-counturl="http://wwojcik.github.com/blog/2012/07/30/ocen-aplikacje-dla-titanium-mobile/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://wwojcik.github.com/blog/2012/07/31/ustawienie-praw-do-katalogow-w-symfony2/" data-via="wojtaswojcik" data-counturl="http://wwojcik.github.com/blog/2012/07/31/ustawienie-praw-do-katalogow-w-symfony2/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -233,10 +194,8 @@ function checkReminderToRate() {
       
       <p class="meta">
         
-          <a class="basic-alignment left" href="/blog/2012/07/30/polaczenie-titanium-i-foursquare/" title="Previous Post: Połączenie Titanium i Foursquare">&laquo; Połączenie Titanium i Foursquare</a>
+          <a class="basic-alignment left" href="/blog/2012/07/31/konfiguracja-serwera-nginx-dla-projektow-w-symfony/" title="Previous Post: Konfiguracja serwera NGINX dla projektów w Symfony">&laquo; Konfiguracja serwera NGINX dla projektów w Symfony</a>
         
-        
-          <a class="basic-alignment right" href="/blog/2012/07/31/konfiguracja-serwera-nginx-dla-projektow-w-symfony/" title="Next Post: Konfiguracja serwera NGINX dla projektów w Symfony">Konfiguracja serwera NGINX dla projektów w Symfony &raquo;</a>
         
       </p>
     </footer>
@@ -362,8 +321,8 @@ function checkReminderToRate() {
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://wwojcik.github.com/blog/2012/07/30/ocen-aplikacje-dla-titanium-mobile/';
-        var disqus_url = 'http://wwojcik.github.com/blog/2012/07/30/ocen-aplikacje-dla-titanium-mobile/';
+        var disqus_identifier = 'http://wwojcik.github.com/blog/2012/07/31/ustawienie-praw-do-katalogow-w-symfony2/';
+        var disqus_url = 'http://wwojcik.github.com/blog/2012/07/31/ustawienie-praw-do-katalogow-w-symfony2/';
         var disqus_script = 'embed.js';
       
     (function () {
