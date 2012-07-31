@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby on Rails | Wojciech Wójcik]]></title>
+  <link href="http://wwojcik.github.com/blog/categories/ruby-on-rails/atom.xml" rel="self"/>
+  <link href="http://wwojcik.github.com/"/>
+  <updated>2012-07-31T23:39:28+02:00</updated>
+  <id>http://wwojcik.github.com/</id>
+  <author>
+    <name><![CDATA[Wojciech Wójcik]]></name>
+    <email><![CDATA[wojtaswojcik@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[KnpUniversity prawie jak RailsCasts]]></title>
+    <link href="http://wwojcik.github.com/blog/2012/07/31/knpuniversity-prawie-jak-railscasts/"/>
+    <updated>2012-07-31T23:29:00+02:00</updated>
+    <id>http://wwojcik.github.com/blog/2012/07/31/knpuniversity-prawie-jak-railscasts</id>
+    <content type="html"><![CDATA[<p>Dzisiaj znalazłem <a href="http://knpuniversity.com">link</a>, pod którym można
+znaleźć aż 4 screencasty dotyczące projektów w Symfony.
+i co lepsze już są płatne.  Mam nadzieje że skoro autorzy już chcą kasę to
+będzie z tego serwisu można w przyszłości uzyskać bardziej wartościowe informacje.
+Ceny chyba nie na naszą kieszeń, ale może to tylko moje zdanie.</p>
+]]></content>
+  </entry>
+  
+</feed>

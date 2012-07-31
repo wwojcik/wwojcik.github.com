@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Symfony | Wojciech Wójcik]]></title>
   <link href="http://wwojcik.github.com/blog/categories/symfony/atom.xml" rel="self"/>
   <link href="http://wwojcik.github.com/"/>
-  <updated>2012-07-31T18:50:31+02:00</updated>
+  <updated>2012-07-31T23:39:28+02:00</updated>
   <id>http://wwojcik.github.com/</id>
   <author>
     <name><![CDATA[Wojciech Wójcik]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[KnpUniversity prawie jak RailsCasts]]></title>
+    <link href="http://wwojcik.github.com/blog/2012/07/31/knpuniversity-prawie-jak-railscasts/"/>
+    <updated>2012-07-31T23:29:00+02:00</updated>
+    <id>http://wwojcik.github.com/blog/2012/07/31/knpuniversity-prawie-jak-railscasts</id>
+    <content type="html"><![CDATA[<p>Dzisiaj znalazłem <a href="http://knpuniversity.com">link</a>, pod którym można
+znaleźć aż 4 screencasty dotyczące projektów w Symfony.
+i co lepsze już są płatne.  Mam nadzieje że skoro autorzy już chcą kasę to
+będzie z tego serwisu można w przyszłości uzyskać bardziej wartościowe informacje.
+Ceny chyba nie na naszą kieszeń, ale może to tylko moje zdanie.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ustawienie praw do katalogów w Symfony2]]></title>
