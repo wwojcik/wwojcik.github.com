@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: MacOS | Wojciech Wójcik]]></title>
+  <link href="http://wwojcik.github.com/blog/categories/macos/atom.xml" rel="self"/>
+  <link href="http://wwojcik.github.com/"/>
+  <updated>2012-07-31T18:50:31+02:00</updated>
+  <id>http://wwojcik.github.com/</id>
+  <author>
+    <name><![CDATA[Wojciech Wójcik]]></name>
+    <email><![CDATA[wojtaswojcik@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Jest make nie ma make]]></title>
+    <link href="http://wwojcik.github.com/blog/2012/07/31/jest-make-nie-ma-make/"/>
+    <updated>2012-07-31T18:37:00+02:00</updated>
+    <id>http://wwojcik.github.com/blog/2012/07/31/jest-make-nie-ma-make</id>
+    <content type="html"><![CDATA[<p>Dzisiaj podczas próby aktualizacji gems, które wymagały przebudowania paczukeszk za pomocą make okazało się
+że podczas aktualizacji systemu do Montain Lion i aktualizacji XCode do wersji 4.4 gdzieś zapodziały się narzędzia konsolowe.</p>
+
+<p>Rozwiązanie jest banalne - należy uruchomić Xcode i w Preferencjach w Menu Downloads Components zainstalować Command Line Tools.</p>
+]]></content>
+  </entry>
+  
+</feed>
