@@ -4,7 +4,7 @@
   <title><![CDATA[Wojciech Wójcik]]></title>
   <link href="http://wwojcik.github.com/atom.xml" rel="self"/>
   <link href="http://wwojcik.github.com/"/>
-  <updated>2012-07-30T21:11:47+02:00</updated>
+  <updated>2012-07-31T08:30:18+02:00</updated>
   <id>http://wwojcik.github.com/</id>
   <author>
     <name><![CDATA[Wojciech Wójcik]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Konfiguracja serwera NGINX dla projektów w Symfony]]></title>
+    <link href="http://wwojcik.github.com/blog/2012/07/31/konfiguracja-serwera-nginx-dla-projektow-w-symfony/"/>
+    <updated>2012-07-31T08:27:00+02:00</updated>
+    <id>http://wwojcik.github.com/blog/2012/07/31/konfiguracja-serwera-nginx-dla-projektow-w-symfony</id>
+    <content type="html"><![CDATA[<p>Na tej <a href=http://wiki.nginx.org/Symfony>stronie</a> można zobaczyć jak przygotować serwer Nginx dla projektów stworzonych w Symfony i Symfony2.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Oceń aplikacje dla Titanium Mobile]]></title>

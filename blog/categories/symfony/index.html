@@ -5,14 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Połączenie Titanium i Foursquare - Wojciech Wójcik</title>
+  <title>Category: Symfony - Wojciech Wójcik</title>
   <meta name="author" content="Wojciech Wójcik">
 
   
-  <meta name="description" content="Znalazłem na githubie ciekawy gist, który może być przydatny przy pisaniu aplikacji w Titanium Mobile /**
-*
-*
-* Copyright 2011 Aaron K. Saunders, &hellip;">
+  <meta name="description" content="Category: Symfony">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://wwojcik.github.com/blog/2012/07/30/polaczenie-titanium-i-foursquare/">
+  <link rel="canonical" href="http://wwojcik.github.comblog/categories/symfony/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -67,142 +64,35 @@
   <div id="main">
     <div id="content">
       <div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      <h1 class="entry-title">Połączenie Titanium I Foursquare</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-30T17:10:00+02:00" pubdate data-updated="true">Jul 30<span>th</span>, 2012</time>
-        
-      </p>
+    <h1 class="entry-title">Category: Symfony</h1>
     
   </header>
+  
+  <div id="blog-archives" class="category">
 
 
-<div class="entry-content"><p>Znalazłem na githubie ciekawy gist, który może być przydatny przy pisaniu aplikacji w Titanium Mobile</p>
 
-<!-- more -->
+  
+  <h2>2012</h2>
 
+<article>
+  
+<h1><a href="/blog/2012/07/31/konfiguracja-serwera-nginx-dla-projektow-w-symfony/">Konfiguracja serwera NGINX dla projektów w Symfony</a></h1>
+<time datetime="2012-07-31T08:27:00+02:00" pubdate><span class='month'>Jul</span> <span class='day'>31</span> <span class='year'>2012</span></time>
 
-<div><script src='https://gist.github.com/885560.js?file='></script>
-<noscript><pre><code>/**
-*
-*
-* Copyright 2011 Aaron K. Saunders, Clearly Innovative Inc
-*
-* Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*     &lt;a href=&quot;http://www.apache.org/licenses/LICENSE-2.0&quot;&gt;http://www.apache.org/licenses/LICENSE-2.0&lt;/a&gt;
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-Ti.include('fsq_module.js');
-
-FOURSQModule.init('CLIENT ID GOES HERE', 'http://www.clearlyinnovative.com/oAuth.html');
-FOURSQModule.login(loginSuccess, function(e) {
-    Titanium.UI.createAlertDialog({
-        title: &quot;LOGIN FAILED&quot;,
-        message: e,
-        buttonNames: ['OK']
-    }).show();
-});
-
-function loginSuccess(e) {
-    FOURSQModule.callMethod(&quot;users/self&quot;, {}, onSuccess_self, function(e) {
-        Titanium.UI.createAlertDialog({
-            title: &quot;users/self: METHOD FAILED FAILED&quot;,
-            message: e,
-            buttonNames: ['OK']
-        }).show();
-    });
-};
-
-function onSuccess_self(xhr) {
-    Ti.API.info(&quot; checkins response-&gt; &quot; + xhr.responseText);
-    var respJSON = JSON.parse(xhr.responseText);
-    Ti.API.info(&quot; Name      -&gt; &quot; + respJSON.response.user.firstName + &quot; &quot; + respJSON.response.user.lastName);
-    Ti.API.info(&quot; Email     -&gt; &quot; + respJSON.response.user.contact.email);
-    Ti.API.info(&quot; Badges    -&gt; &quot; + respJSON.response.user.badges.count);
-    Ti.API.info(&quot; Checkins  -&gt; &quot; + respJSON.response.user.checkins.count);
-};</code></pre></noscript></div>
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/symfony/'>Symfony</a></span>
+</footer>
 
 
+</article>
 
 </div>
 
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">Wojciech Wójcik</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-30T17:10:00+02:00" pubdate data-updated="true">Jul 30<span>th</span>, 2012</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/titanium/'>Titanium</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://wwojcik.github.com/blog/2012/07/30/polaczenie-titanium-i-foursquare/" data-via="wojtaswojcik" data-counturl="http://wwojcik.github.com/blog/2012/07/30/polaczenie-titanium-i-foursquare/" >Tweet</a>
-  
-  
-  <div class="g-plusone" data-size="medium"></div>
-  
-  
-    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
-  
-</div>
-
-    
-    <p class="meta">
-      
-      
-        <a class="basic-alignment right" href="/blog/2012/07/30/ocen-aplikacje-dla-titanium-mobile/" title="Next Post: Oceń aplikacje dla Titanium Mobile">Oceń aplikacje dla Titanium Mobile &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
 </div>

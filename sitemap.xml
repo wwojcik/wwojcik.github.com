@@ -2,18 +2,24 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://wwojcik.github.com/blog/2012/07/30/polaczenie-titanium-i-foursquare/</loc>
-        <lastmod>2012-07-30T21:11:04+02:00</lastmod>
+        <lastmod>2012-07-30T21:13:24+02:00</lastmod>
     </url>
     <url>
         <loc>http://wwojcik.github.com/blog/2012/07/30/ocen-aplikacje-dla-titanium-mobile/</loc>
         <lastmod>2012-07-30T21:10:43+02:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://wwojcik.github.com/blog/2012/07/31/konfiguracja-serwera-nginx-dla-projektow-w-symfony/
+        </loc>
+        <lastmod>2012-07-31T08:29:25+02:00</lastmod>
+    </url>
+    <url>
         <loc>http://wwojcik.github.com/blog/archives/</loc>
-        <lastmod>2012-07-30T21:11:04+02:00</lastmod>
+        <lastmod>2012-07-31T08:29:25+02:00</lastmod>
     </url>
     <url>
         <loc>http://wwojcik.github.com/</loc>
-        <lastmod>2012-07-30T21:11:04+02:00</lastmod>
+        <lastmod>2012-07-31T08:29:25+02:00</lastmod>
     </url>
 </urlset>
