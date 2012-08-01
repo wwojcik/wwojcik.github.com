@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Heroku | Wojciech Wójcik]]></title>
+  <link href="http://wwojcik.github.com/blog/categories/heroku/atom.xml" rel="self"/>
+  <link href="http://wwojcik.github.com/"/>
+  <updated>2012-08-01T23:59:38+02:00</updated>
+  <id>http://wwojcik.github.com/</id>
+  <author>
+    <name><![CDATA[Wojciech Wójcik]]></name>
+    <email><![CDATA[wojtaswojcik@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Zmiany w Heroku]]></title>
+    <link href="http://wwojcik.github.com/blog/2012/08/01/zmiany-w-heroku/"/>
+    <updated>2012-08-01T23:54:00+02:00</updated>
+    <id>http://wwojcik.github.com/blog/2012/08/01/zmiany-w-heroku</id>
+    <content type="html"><![CDATA[<p>Dzisiaj Heroku wydało free Heroku Postgres <code>dev</code> plan, który będzie zastępował Shared Database.
+W otrzymanym mailu od Heroku w tej sprawie można przeczytać:
+<blockquote><p>Because of the significant stability and feature improvements in this new service, we are deprecating Shared Databases and will begin automatically migrating databases gradually over the month of August, beginning on August 9. Prior to your migration, we will send you an e-mail notice with the exact date &amp; time.</p></p><p><p>If you have unusual circumstances and require more time before the auto migration occurs, you can request an extension to your automatic migration date. We will do our best to honor all requests.</p></p><p><p>The new <code>dev</code> plan offers many advantages, including Postgres 9.1 with schemaless SQL, direct psql access, data clips, and a web management interface. It also imposes a hard limit of 10,000 rows, comparable to the 5mb limit you have now. Check the size of your existing database if you are unsure if you are over the limit.</p></p><p><p>We strongly encourage you to migrate the database(s) yourself. By doing this you will have complete control over when the migration and associated downtime occur. As an added incentive, we will increase the row-limit from 10,000 to 14,000 rows if you migrate yourself prior to 12pm PDT August 9.</p></p><p><p>Don’t hesitate. You can begin right now by provisioning a dev database.</p></blockquote></p>
+]]></content>
+  </entry>
+  
+</feed>

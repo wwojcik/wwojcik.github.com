@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Titanium | Wojciech Wójcik]]></title>
   <link href="http://wwojcik.github.com/blog/categories/titanium/atom.xml" rel="self"/>
   <link href="http://wwojcik.github.com/"/>
-  <updated>2012-07-31T23:50:10+02:00</updated>
+  <updated>2012-08-01T23:59:38+02:00</updated>
   <id>http://wwojcik.github.com/</id>
   <author>
     <name><![CDATA[Wojciech Wójcik]]></name>
@@ -12,6 +12,20 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Wydano Titanium Mobile SDK 2.1.1]]></title>
+    <link href="http://wwojcik.github.com/blog/2012/08/01/wydano-titanium-mobile-sdk-2-dot-1-1/"/>
+    <updated>2012-08-01T23:40:00+02:00</updated>
+    <id>http://wwojcik.github.com/blog/2012/08/01/wydano-titanium-mobile-sdk-2-dot-1-1</id>
+    <content type="html"><![CDATA[<p>Pojawiła się kolejna wersja Titanium Mobile SDK oznaczona jako 2.1.1.</p>
+
+<p>Wraz z nią poprawniono 30 zgłoszonych błędów jak również dodano nowe funkcjonalności np.
+ACS wprowadził  Friends, Events, Files, and Messages APIs.</p>
+
+<p>Pełna lista zmian znajduje się pod tym <a href="http://docs.appcelerator.com/titanium/release-notes/?version=2.1.1.GA">adresem</a>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Oceń aplikacje dla Titanium Mobile]]></title>
