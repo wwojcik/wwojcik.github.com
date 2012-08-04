@@ -4,7 +4,7 @@
   <title><![CDATA[Wojciech Wójcik]]></title>
   <link href="http://wwojcik.github.com/atom.xml" rel="self"/>
   <link href="http://wwojcik.github.com/"/>
-  <updated>2012-08-04T09:08:13+02:00</updated>
+  <updated>2012-08-04T10:15:53+02:00</updated>
   <id>http://wwojcik.github.com/</id>
   <author>
     <name><![CDATA[Wojciech Wójcik]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Jak korzystać z Google Calendar API w Ruby on Rails]]></title>
+    <link href="http://wwojcik.github.com/blog/2012/08/04/jak-korzystac-z-google-calendar-api-w-ruby-on-rails/"/>
+    <updated>2012-08-04T10:12:00+02:00</updated>
+    <id>http://wwojcik.github.com/blog/2012/08/04/jak-korzystac-z-google-calendar-api-w-ruby-on-rails</id>
+    <content type="html"><![CDATA[<p>Pod tym <a href="http://gregandrachel.baugues.com/google-calendar-api-oauth2-and-ruby-on-rails">adresem</a> można przczytać jak można wykorzystać Google Calendar API w swojej aplikacji stworzonej w Ruby on Rails.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Zmiany w Heroku]]></title>
