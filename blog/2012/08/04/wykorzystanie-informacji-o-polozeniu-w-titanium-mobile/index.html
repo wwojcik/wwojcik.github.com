@@ -5,14 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Połączenie Titanium i Foursquare - Wojciech Wójcik</title>
+  <title>Wykorzystanie informacji o położeniu w Titanium Mobile - Wojciech Wójcik</title>
   <meta name="author" content="Wojciech Wójcik">
 
   
-  <meta name="description" content="Znalazłem na githubie ciekawy gist, który może być przydatny przy pisaniu aplikacji w Titanium Mobile /**
-*
-*
-* Copyright 2011 Aaron K. Saunders, &hellip;">
+  <meta name="description" content="Przykład jak wykorzystać informacje o położeniu w Titanium Mobile. exports.init = function() { Ti.Geolocation.purpose = 'Mileage Calculate'; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://wwojcik.github.com/blog/2012/07/30/polaczenie-titanium-i-foursquare">
+  <link rel="canonical" href="http://wwojcik.github.com/blog/2012/08/04/wykorzystanie-informacji-o-polozeniu-w-titanium-mobile">
   <link href="/favicon.ico" rel="icon">
   
   <link href="/assets/bootstrap/css/spacelab.min.css" rel="stylesheet" type="text/css">
@@ -102,7 +99,7 @@
     
   <header>
     
-      <h1 class="entry-title">Połączenie Titanium i Foursquare</h1>
+      <h1 class="entry-title">Wykorzystanie informacji o położeniu w Titanium Mobile</h1>
     
     
       <p class="meta">
@@ -118,7 +115,7 @@
   
 
 
-<time datetime="2012-07-30T17:10:00+02:00" pubdate data-updated="true">Jul 30<span>th</span>, 2012</time>
+<time datetime="2012-08-04T10:20:00+02:00" pubdate data-updated="true">Aug 4<span>th</span>, 2012</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -129,57 +126,262 @@
 
   
   
-  <div class="entry-content"><p>Znalazłem na githubie ciekawy gist, który może być przydatny przy pisaniu aplikacji w Titanium Mobile</p>
+  <div class="entry-content"><p>Przykład jak wykorzystać informacje o położeniu w Titanium Mobile.</p>
 
 <!-- more -->
 
 
-<div><script src='https://gist.github.com/885560.js?file='></script>
-<noscript><pre><code>/**
-*
-*
-* Copyright 2011 Aaron K. Saunders, Clearly Innovative Inc
-*
-* Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*     &lt;a href=&quot;http://www.apache.org/licenses/LICENSE-2.0&quot;&gt;http://www.apache.org/licenses/LICENSE-2.0&lt;/a&gt;
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-Ti.include('fsq_module.js');
+<div><script src='https://gist.github.com/2929320.js?file='></script>
+<noscript><pre><code>exports.init = function() {
+    Ti.Geolocation.purpose = 'Mileage Calculate';
+    
+    checkGeoPermission();
+    
+    Ti.Geolocation.preferredProvider = Ti.Geolocation.PROVIDER_GPS;
+    
+    //
+    //  SET ACCURACY - THE FOLLOWING VALUES ARE SUPPORTED
+    //
+    // Ti.Geolocation.ACCURACY_BEST
+    // Ti.Geolocation.ACCURACY_NEAREST_TEN_METERS
+    // Ti.Geolocation.ACCURACY_HUNDRED_METERS
+    // Ti.Geolocation.ACCURACY_KILOMETER
+    // Ti.Geolocation.ACCURACY_THREE_KILOMETERS
+    //
+    Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_BEST;
 
-FOURSQModule.init('CLIENT ID GOES HERE', 'http://www.clearlyinnovative.com/oAuth.html');
-FOURSQModule.login(loginSuccess, function(e) {
-    Titanium.UI.createAlertDialog({
-        title: &quot;LOGIN FAILED&quot;,
-        message: e,
-        buttonNames: ['OK']
-    }).show();
-});
-
-function loginSuccess(e) {
-    FOURSQModule.callMethod(&quot;users/self&quot;, {}, onSuccess_self, function(e) {
-        Titanium.UI.createAlertDialog({
-            title: &quot;users/self: METHOD FAILED FAILED&quot;,
-            message: e,
-            buttonNames: ['OK']
-        }).show();
-    });
+    //
+    //  SET DISTANCE FILTER.  THIS DICTATES HOW OFTEN AN EVENT FIRES BASED ON THE DISTANCE THE DEVICE MOVES
+    //  THIS VALUE IS IN METERS
+    //
+    Ti.Geolocation.distanceFilter = 10;
 };
 
-function onSuccess_self(xhr) {
-    Ti.API.info(&quot; checkins response-&gt; &quot; + xhr.responseText);
-    var respJSON = JSON.parse(xhr.responseText);
-    Ti.API.info(&quot; Name      -&gt; &quot; + respJSON.response.user.firstName + &quot; &quot; + respJSON.response.user.lastName);
-    Ti.API.info(&quot; Email     -&gt; &quot; + respJSON.response.user.contact.email);
-    Ti.API.info(&quot; Badges    -&gt; &quot; + respJSON.response.user.badges.count);
-    Ti.API.info(&quot; Checkins  -&gt; &quot; + respJSON.response.user.checkins.count);
+function checkGeoPermission() {
+    if (Ti.Geolocation.locationServicesEnabled === false){
+        showDialog({
+            title: 'Mapping Error', 
+            message: 'Your device has geo turned off - turn it on.'
+        });
+    } else {
+        var authorization = Ti.Geolocation.locationServicesAuthorization;
+        if (authorization == Ti.Geolocation.AUTHORIZATION_DENIED) {           
+            showDialog({
+                title: 'Mapping Error', 
+                message: 'You have disallowed App from running geolocation services.'
+            });
+        }
+        else if (authorization == Ti.Geolocation.AUTHORIZATION_RESTRICTED) {
+            showDialog({
+                title: 'Mapping Error', 
+                message: 'Your system has disallowed App from running geolocation services.'
+            });
+        }
+    }    
+};
+
+
+/* =============================================================================
+   Get current position
+   ========================================================================== */
+
+
+function getCurrentPosition(callback) {
+    Ti.Geolocation.getCurrentPosition(callback);
+}
+exports.getCurrentPosition = getCurrentPosition;
+
+
+/* =============================================================================
+   Geocode: convert address to latitude - longitude and vice versa
+   ========================================================================== */
+
+
+/*
+ type: 
+    - 'address': '1600+Amphitheatre+Parkway,+Mountain+View,+CA'
+    - 'latlng' : '40.714224,-73.961452'
+ * */
+function location(type, param, callback) {
+    var xhr = Ti.Network.createHTTPClient();
+    xhr.setTimeout(15000);
+    xhr.open('GET', 'http://maps.googleapis.com/maps/api/geocode/json?' + (type == 'latlng' ? 'latlng' : 'address') + '=' + param + '&amp;sensor=false');
+    xhr.onload = function() {
+        var obj = JSON.parse(this.responseText);
+        
+        if (obj.status != 'OK') {
+            showDialog({
+                title: 'Mapping Error', 
+                message: 'Cannot determine a route from your address, please use a broader address'
+            });
+            return;
+        }
+        
+        if (obj.results.length) {
+            var result = obj.results[0],
+                location = result.geometry.location;        
+            callback({
+                title: result.formatted_address,
+                latitude: location.lat,
+                longitude: location.lng
+            });
+        }
+    };
+    xhr.onerror = function(e) {
+        Ti.API.error(e.error);
+        showDialog({
+            title: 'Mapping Error', 
+            message: 'Can not determine your current location'
+        });
+    };
+    xhr.send();
+};
+exports.location = location;
+
+
+/* =============================================================================
+   Route Direction: find direction between two points
+   ========================================================================== */
+
+
+function route(origin, destination, callback) {
+    var url = &quot;http://maps.googleapis.com/maps/api/directions/json?sensor=false&quot;
+        + &quot;&amp;mode=driving&quot;
+        + &quot;&amp;alternatives=true&quot; //show alternative directions
+        + &quot;&amp;units=imperial&quot;    //imperial: miles, metric: km
+        + &quot;&amp;origin=&quot; + origin
+        + &quot;&amp;destination=&quot; + destination;
+        
+    //https://developers.google.com/maps/documentation/directions/#UnitSystems    
+
+    var xhr = Ti.Network.createHTTPClient();
+    xhr.setTimeout(15000);
+    xhr.open('GET', url);
+    xhr.onload = function() {
+        var result = JSON.parse(this.responseText);
+        
+        if (result.status != 'OK') {
+            showDialog({
+                title: 'Mapping Error', 
+                message: 'Cannot determine a route from your address, please use a broader address'
+            });
+            callback(1, null);
+            return;
+        }
+        
+        var params = [],
+            routes = result.routes;
+        
+        for(var i = 0, ii = routes.length; i &lt; ii; i++) {
+            var leg = routes[i].legs[0], // https://developers.google.com/maps/documentation/directions/#DirectionsLegs
+                points = [];
+            
+            for(var j=0, jj = leg.steps.length; j &lt; jj; j++){
+                var step = leg.steps[j], 
+                    point = step.start_location;
+                
+                points.push({
+                    latitude: point.lat,
+                    longitude: point.lng
+                });
+                
+                decodeLine(step.polyline.points, points);
+            };
+            
+            // Get last point and add it to the array, as we are only parsing start_location
+            var lastPoint = leg.end_location;
+            points.push({
+                latitude: lastPoint.lat,
+                longitude: lastPoint.lng
+            });
+            
+            var bounds = routes[i].bounds,
+                region = {
+                    animate: true,
+                    latitude: bounds.northeast.lat - (bounds.northeast.lat - bounds.southwest.lat) / 2,
+                    longitude: bounds.northeast.lng - (bounds.northeast.lng - bounds.southwest.lng) / 2,
+                    latitudeDelta: (bounds.northeast.lat - bounds.southwest.lat) / 1,
+                    longitudeDelta: (bounds.northeast.lng - bounds.southwest.lng) / 1
+                }; 
+            
+            params.push({ 
+                bound: region,
+                distance: leg.distance.text,
+                duration: leg.duration.text,
+                end_address: leg.end_address,
+                end_location: {
+                    latitude: leg.end_location.lat,
+                    longitude: leg.end_location.lng
+                },
+                start_address: leg.start_address,
+                start_location: {
+                    latitude: leg.start_location.lat,
+                    longitude: leg.start_location.lng
+                },
+                points: points 
+            });
+        }
+
+        callback(0, params);
+    };
+    xhr.onerror = function(e) {
+        Ti.API.error(e.error);
+        showDialog({
+            title: 'Mapping Error', 
+            message: 'Cannot determine a route from your address, please use a broader address'
+        });
+        callback(1, null);
+    };
+    xhr.send();
+};
+exports.route = route;
+
+// This decodes the lines
+function decodeLine(encoded, points) {
+    var len = encoded.length;
+    var index = 0;
+    var array = [];
+    var lat = 0;
+    var lng = 0;
+
+    while(index &lt; len) {
+        var b;
+        var shift = 0;
+        var result = 0;
+        do {
+            b = encoded.charCodeAt(index++) - 63;
+            result |= (b &amp; 0x1f) &lt;&lt; shift;
+            shift += 5;
+        } while (b &gt;= 0x20);
+        var dlat = ((result &amp; 1) ? ~(result &gt;&gt; 1) : (result &gt;&gt; 1));
+        lat += dlat;
+
+        shift = 0;
+        result = 0;
+        do {
+            b = encoded.charCodeAt(index++) - 63;
+            result |= (b &amp; 0x1f) &lt;&lt; shift;
+            shift += 5;
+        } while (b &gt;= 0x20);
+        var dlng = ((result &amp; 1) ? ~(result &gt;&gt; 1) : (result &gt;&gt; 1));
+        lng += dlng;
+
+        // Create new Vars for the created lats and lng
+        var newLat = lat * 1e-5;
+        var newLon = lng * 1e-5;
+
+        // push them into the array at the end (thus adding it to the correct place)
+        points.push({
+            latitude: newLat,
+            longitude: newLon
+        });
+    }
+}
+
+function showDialog(args) {
+    var dialog =  Ti.UI.createAlertDialog(args);
+    dialog.show();
+    return dialog;
 };</code></pre></noscript></div>
 
 
@@ -208,7 +410,7 @@ function onSuccess_self(xhr) {
   
 
 
-<time datetime="2012-07-30T17:10:00+02:00" pubdate data-updated="true">Jul 30<span>th</span>, 2012</time>
+<time datetime="2012-08-04T10:20:00+02:00" pubdate data-updated="true">Aug 4<span>th</span>, 2012</time>
         
 
 <span class="categories">
@@ -223,7 +425,7 @@ function onSuccess_self(xhr) {
         <div class="sharing">
   <br/>
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://wwojcik.github.com/blog/2012/07/30/polaczenie-titanium-i-foursquare/" data-via="wojtaswojcik" data-counturl="http://wwojcik.github.com/blog/2012/07/30/polaczenie-titanium-i-foursquare/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://wwojcik.github.com/blog/2012/08/04/wykorzystanie-informacji-o-polozeniu-w-titanium-mobile/" data-via="wojtaswojcik" data-counturl="http://wwojcik.github.com/blog/2012/08/04/wykorzystanie-informacji-o-polozeniu-w-titanium-mobile/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -236,8 +438,8 @@ function onSuccess_self(xhr) {
       
       <p class="meta">
         
+          <a class="basic-alignment left" href="/blog/2012/08/04/jak-korzystac-z-google-calendar-api-w-ruby-on-rails/" title="Previous Post: Jak korzystać z Google Calendar API w Ruby on Rails">&laquo; Jak korzystać z Google Calendar API w Ruby on Rails</a>
         
-          <a class="basic-alignment right" href="/blog/2012/07/30/ocen-aplikacje-dla-titanium-mobile/" title="Next Post: Oceń aplikacje dla Titanium Mobile">Oceń aplikacje dla Titanium Mobile &raquo;</a>
         
       </p>
     </footer>
@@ -367,8 +569,8 @@ function onSuccess_self(xhr) {
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://wwojcik.github.com/blog/2012/07/30/polaczenie-titanium-i-foursquare/';
-        var disqus_url = 'http://wwojcik.github.com/blog/2012/07/30/polaczenie-titanium-i-foursquare/';
+        var disqus_identifier = 'http://wwojcik.github.com/blog/2012/08/04/wykorzystanie-informacji-o-polozeniu-w-titanium-mobile/';
+        var disqus_url = 'http://wwojcik.github.com/blog/2012/08/04/wykorzystanie-informacji-o-polozeniu-w-titanium-mobile/';
         var disqus_script = 'embed.js';
       
     (function () {

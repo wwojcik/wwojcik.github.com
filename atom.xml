@@ -4,7 +4,7 @@
   <title><![CDATA[Wojciech Wójcik]]></title>
   <link href="http://wwojcik.github.com/atom.xml" rel="self"/>
   <link href="http://wwojcik.github.com/"/>
-  <updated>2012-08-04T10:15:53+02:00</updated>
+  <updated>2012-08-04T10:23:40+02:00</updated>
   <id>http://wwojcik.github.com/</id>
   <author>
     <name><![CDATA[Wojciech Wójcik]]></name>
@@ -12,6 +12,274 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Wykorzystanie informacji o położeniu w Titanium Mobile]]></title>
+    <link href="http://wwojcik.github.com/blog/2012/08/04/wykorzystanie-informacji-o-polozeniu-w-titanium-mobile/"/>
+    <updated>2012-08-04T10:20:00+02:00</updated>
+    <id>http://wwojcik.github.com/blog/2012/08/04/wykorzystanie-informacji-o-polozeniu-w-titanium-mobile</id>
+    <content type="html"><![CDATA[<p>Przykład jak wykorzystać informacje o położeniu w Titanium Mobile.</p>
+
+<!-- more -->
+
+
+<div><script src='https://gist.github.com/2929320.js?file='></script>
+<noscript><pre><code>exports.init = function() {
+    Ti.Geolocation.purpose = 'Mileage Calculate';
+    
+    checkGeoPermission();
+    
+    Ti.Geolocation.preferredProvider = Ti.Geolocation.PROVIDER_GPS;
+    
+    //
+    //  SET ACCURACY - THE FOLLOWING VALUES ARE SUPPORTED
+    //
+    // Ti.Geolocation.ACCURACY_BEST
+    // Ti.Geolocation.ACCURACY_NEAREST_TEN_METERS
+    // Ti.Geolocation.ACCURACY_HUNDRED_METERS
+    // Ti.Geolocation.ACCURACY_KILOMETER
+    // Ti.Geolocation.ACCURACY_THREE_KILOMETERS
+    //
+    Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_BEST;
+
+    //
+    //  SET DISTANCE FILTER.  THIS DICTATES HOW OFTEN AN EVENT FIRES BASED ON THE DISTANCE THE DEVICE MOVES
+    //  THIS VALUE IS IN METERS
+    //
+    Ti.Geolocation.distanceFilter = 10;
+};
+
+function checkGeoPermission() {
+    if (Ti.Geolocation.locationServicesEnabled === false){
+        showDialog({
+            title: 'Mapping Error', 
+            message: 'Your device has geo turned off - turn it on.'
+        });
+    } else {
+        var authorization = Ti.Geolocation.locationServicesAuthorization;
+        if (authorization == Ti.Geolocation.AUTHORIZATION_DENIED) {           
+            showDialog({
+                title: 'Mapping Error', 
+                message: 'You have disallowed App from running geolocation services.'
+            });
+        }
+        else if (authorization == Ti.Geolocation.AUTHORIZATION_RESTRICTED) {
+            showDialog({
+                title: 'Mapping Error', 
+                message: 'Your system has disallowed App from running geolocation services.'
+            });
+        }
+    }    
+};
+
+
+/* =============================================================================
+   Get current position
+   ========================================================================== */
+
+
+function getCurrentPosition(callback) {
+    Ti.Geolocation.getCurrentPosition(callback);
+}
+exports.getCurrentPosition = getCurrentPosition;
+
+
+/* =============================================================================
+   Geocode: convert address to latitude - longitude and vice versa
+   ========================================================================== */
+
+
+/*
+ type: 
+    - 'address': '1600+Amphitheatre+Parkway,+Mountain+View,+CA'
+    - 'latlng' : '40.714224,-73.961452'
+ * */
+function location(type, param, callback) {
+    var xhr = Ti.Network.createHTTPClient();
+    xhr.setTimeout(15000);
+    xhr.open('GET', 'http://maps.googleapis.com/maps/api/geocode/json?' + (type == 'latlng' ? 'latlng' : 'address') + '=' + param + '&amp;sensor=false');
+    xhr.onload = function() {
+        var obj = JSON.parse(this.responseText);
+        
+        if (obj.status != 'OK') {
+            showDialog({
+                title: 'Mapping Error', 
+                message: 'Cannot determine a route from your address, please use a broader address'
+            });
+            return;
+        }
+        
+        if (obj.results.length) {
+            var result = obj.results[0],
+                location = result.geometry.location;        
+            callback({
+                title: result.formatted_address,
+                latitude: location.lat,
+                longitude: location.lng
+            });
+        }
+    };
+    xhr.onerror = function(e) {
+        Ti.API.error(e.error);
+        showDialog({
+            title: 'Mapping Error', 
+            message: 'Can not determine your current location'
+        });
+    };
+    xhr.send();
+};
+exports.location = location;
+
+
+/* =============================================================================
+   Route Direction: find direction between two points
+   ========================================================================== */
+
+
+function route(origin, destination, callback) {
+    var url = &quot;http://maps.googleapis.com/maps/api/directions/json?sensor=false&quot;
+        + &quot;&amp;mode=driving&quot;
+        + &quot;&amp;alternatives=true&quot; //show alternative directions
+        + &quot;&amp;units=imperial&quot;    //imperial: miles, metric: km
+        + &quot;&amp;origin=&quot; + origin
+        + &quot;&amp;destination=&quot; + destination;
+        
+    //https://developers.google.com/maps/documentation/directions/#UnitSystems    
+
+    var xhr = Ti.Network.createHTTPClient();
+    xhr.setTimeout(15000);
+    xhr.open('GET', url);
+    xhr.onload = function() {
+        var result = JSON.parse(this.responseText);
+        
+        if (result.status != 'OK') {
+            showDialog({
+                title: 'Mapping Error', 
+                message: 'Cannot determine a route from your address, please use a broader address'
+            });
+            callback(1, null);
+            return;
+        }
+        
+        var params = [],
+            routes = result.routes;
+        
+        for(var i = 0, ii = routes.length; i &lt; ii; i++) {
+            var leg = routes[i].legs[0], // https://developers.google.com/maps/documentation/directions/#DirectionsLegs
+                points = [];
+            
+            for(var j=0, jj = leg.steps.length; j &lt; jj; j++){
+                var step = leg.steps[j], 
+                    point = step.start_location;
+                
+                points.push({
+                    latitude: point.lat,
+                    longitude: point.lng
+                });
+                
+                decodeLine(step.polyline.points, points);
+            };
+            
+            // Get last point and add it to the array, as we are only parsing start_location
+            var lastPoint = leg.end_location;
+            points.push({
+                latitude: lastPoint.lat,
+                longitude: lastPoint.lng
+            });
+            
+            var bounds = routes[i].bounds,
+                region = {
+                    animate: true,
+                    latitude: bounds.northeast.lat - (bounds.northeast.lat - bounds.southwest.lat) / 2,
+                    longitude: bounds.northeast.lng - (bounds.northeast.lng - bounds.southwest.lng) / 2,
+                    latitudeDelta: (bounds.northeast.lat - bounds.southwest.lat) / 1,
+                    longitudeDelta: (bounds.northeast.lng - bounds.southwest.lng) / 1
+                }; 
+            
+            params.push({ 
+                bound: region,
+                distance: leg.distance.text,
+                duration: leg.duration.text,
+                end_address: leg.end_address,
+                end_location: {
+                    latitude: leg.end_location.lat,
+                    longitude: leg.end_location.lng
+                },
+                start_address: leg.start_address,
+                start_location: {
+                    latitude: leg.start_location.lat,
+                    longitude: leg.start_location.lng
+                },
+                points: points 
+            });
+        }
+
+        callback(0, params);
+    };
+    xhr.onerror = function(e) {
+        Ti.API.error(e.error);
+        showDialog({
+            title: 'Mapping Error', 
+            message: 'Cannot determine a route from your address, please use a broader address'
+        });
+        callback(1, null);
+    };
+    xhr.send();
+};
+exports.route = route;
+
+// This decodes the lines
+function decodeLine(encoded, points) {
+    var len = encoded.length;
+    var index = 0;
+    var array = [];
+    var lat = 0;
+    var lng = 0;
+
+    while(index &lt; len) {
+        var b;
+        var shift = 0;
+        var result = 0;
+        do {
+            b = encoded.charCodeAt(index++) - 63;
+            result |= (b &amp; 0x1f) &lt;&lt; shift;
+            shift += 5;
+        } while (b &gt;= 0x20);
+        var dlat = ((result &amp; 1) ? ~(result &gt;&gt; 1) : (result &gt;&gt; 1));
+        lat += dlat;
+
+        shift = 0;
+        result = 0;
+        do {
+            b = encoded.charCodeAt(index++) - 63;
+            result |= (b &amp; 0x1f) &lt;&lt; shift;
+            shift += 5;
+        } while (b &gt;= 0x20);
+        var dlng = ((result &amp; 1) ? ~(result &gt;&gt; 1) : (result &gt;&gt; 1));
+        lng += dlng;
+
+        // Create new Vars for the created lats and lng
+        var newLat = lat * 1e-5;
+        var newLon = lng * 1e-5;
+
+        // push them into the array at the end (thus adding it to the correct place)
+        points.push({
+            latitude: newLat,
+            longitude: newLon
+        });
+    }
+}
+
+function showDialog(args) {
+    var dialog =  Ti.UI.createAlertDialog(args);
+    dialog.show();
+    return dialog;
+};</code></pre></noscript></div>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Jak korzystać z Google Calendar API w Ruby on Rails]]></title>
