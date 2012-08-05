@@ -4,7 +4,7 @@
   <title><![CDATA[Wojciech Wójcik]]></title>
   <link href="http://wwojcik.github.com/atom.xml" rel="self"/>
   <link href="http://wwojcik.github.com/"/>
-  <updated>2012-08-04T10:23:40+02:00</updated>
+  <updated>2012-08-05T10:37:11+02:00</updated>
   <id>http://wwojcik.github.com/</id>
   <author>
     <name><![CDATA[Wojciech Wójcik]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Wydano Symfony 2.1 RC1]]></title>
+    <link href="http://wwojcik.github.com/blog/2012/08/05/wydano-symfony-2-dot-1-rc1/"/>
+    <updated>2012-08-05T10:33:00+02:00</updated>
+    <id>http://wwojcik.github.com/blog/2012/08/05/wydano-symfony-2-dot-1-rc1</id>
+    <content type="html"><![CDATA[<p>Po roku od wydania Symfony 2.0 ukazała się <a href="http://symfony.com/blog/symfony-2-1-0-rc1-released">Symfony 2.1 RC1</a>. Zbliżamy się dużymi krokami do wydania stabilnej wersji tego popularnego frameworku.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Wykorzystanie informacji o położeniu w Titanium Mobile]]></title>
