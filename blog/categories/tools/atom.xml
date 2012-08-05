@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Tools | Wojciech Wójcik]]></title>
+  <link href="http://wwojcik.github.com/blog/categories/tools/atom.xml" rel="self"/>
+  <link href="http://wwojcik.github.com/"/>
+  <updated>2012-08-05T22:12:01+02:00</updated>
+  <id>http://wwojcik.github.com/</id>
+  <author>
+    <name><![CDATA[Wojciech Wójcik]]></name>
+    <email><![CDATA[wojtaswojcik@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[gitignore dla różnych projektów]]></title>
+    <link href="http://wwojcik.github.com/blog/2012/08/05/gitignore-dla-roznych-projektow/"/>
+    <updated>2012-08-05T22:08:00+02:00</updated>
+    <id>http://wwojcik.github.com/blog/2012/08/05/gitignore-dla-roznych-projektow</id>
+    <content type="html"><![CDATA[<p>Jeżeli korzystacie w swoich projektach w gita i nie chcecie zapomnieć o dodaniu plików lub katalogów do ignorowanych przy commitach ten <a href="https://github.com/github/gitignore">link</a> może okazać się bardzo pomocny.</p>
+]]></content>
+  </entry>
+  
+</feed>
