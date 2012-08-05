@@ -2,17 +2,17 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://wwojcik.github.com/blog/2012/07/30/polaczenie-titanium-i-foursquare/</loc>
-        <lastmod>2012-07-31T09:39:24+02:00</lastmod>
+        <lastmod>2012-08-05T12:36:11+02:00</lastmod>
     </url>
     <url>
         <loc>http://wwojcik.github.com/blog/2012/07/30/ocen-aplikacje-dla-titanium-mobile/</loc>
-        <lastmod>2012-07-31T09:39:24+02:00</lastmod>
+        <lastmod>2012-08-05T12:35:26+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://wwojcik.github.com/blog/2012/07/31/konfiguracja-serwera-nginx-dla-projektow-w-symfony/
         </loc>
-        <lastmod>2012-07-31T09:39:24+02:00</lastmod>
+        <lastmod>2012-08-05T12:37:14+02:00</lastmod>
     </url>
     <url>
         <loc>
@@ -34,7 +34,7 @@
     </url>
     <url>
         <loc>http://wwojcik.github.com/blog/2012/08/01/wydano-titanium-mobile-sdk-2-dot-1-1/</loc>
-        <lastmod>2012-08-01T23:44:17+02:00</lastmod>
+        <lastmod>2012-08-05T12:34:50+02:00</lastmod>
     </url>
     <url>
         <loc>http://wwojcik.github.com/blog/2012/08/01/zmiany-w-heroku/</loc>
@@ -54,7 +54,7 @@
     </url>
     <url>
         <loc>http://wwojcik.github.com/blog/2012/08/05/wydano-symfony-2-dot-1-rc1/</loc>
-        <lastmod>2012-08-05T10:36:56+02:00</lastmod>
+        <lastmod>2012-08-05T12:34:30+02:00</lastmod>
     </url>
     <url>
         <loc>
@@ -64,7 +64,7 @@
     </url>
     <url>
         <loc>http://wwojcik.github.com/blog/2012/08/05/integracja-sap-i-titanium-mobile/</loc>
-        <lastmod>2012-08-05T11:09:10+02:00</lastmod>
+        <lastmod>2012-08-05T12:31:54+02:00</lastmod>
     </url>
     <url>
         <loc>http://wwojcik.github.com/404.html</loc>
@@ -72,10 +72,10 @@
     </url>
     <url>
         <loc>http://wwojcik.github.com/blog/archives/</loc>
-        <lastmod>2012-08-05T11:09:10+02:00</lastmod>
+        <lastmod>2012-08-05T12:37:14+02:00</lastmod>
     </url>
     <url>
         <loc>http://wwojcik.github.com/</loc>
-        <lastmod>2012-08-05T11:09:10+02:00</lastmod>
+        <lastmod>2012-08-05T12:37:14+02:00</lastmod>
     </url>
 </urlset>
