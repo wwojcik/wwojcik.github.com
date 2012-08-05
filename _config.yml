@@ -7,8 +7,8 @@ title: Wojciech Wójcik
 subtitle: Mam nadzieje że się przyda.
 author: Wojciech Wójcik
 simple_search: http://google.com/search
-description:
-
+description: Blog Wojciecha Wójcika poświęcony IT
+cover: /images/ja.jpg
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
 # http://www.ruby-doc.org/core-1.9.2/Time.html#method-i-strftime
@@ -97,3 +97,7 @@ google_analytics_tracking_id: UA-26145063-12
 
 # Facebook Like
 facebook_like: true
+facebook_app_id: 432300816808833
+facebook_namespace: wojtaswojcik 
+tag_dir: tags
+tag_title_prefix: "Tag: "

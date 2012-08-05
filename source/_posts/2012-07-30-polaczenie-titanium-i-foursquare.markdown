@@ -4,7 +4,7 @@ title: "Połączenie Titanium i Foursquare"
 date: 2012-07-30 17:10
 comments: true
 categories: Titanium
-tags: titanium, foursquere, gist, android, iphone
+tags: [Titanium, foursquere, gist, android, iphone]
 ---
 Znalazłem na githubie ciekawy gist, który może być przydatny przy pisaniu aplikacji w Titanium Mobile
 <!-- more -->
