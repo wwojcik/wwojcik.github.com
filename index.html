@@ -9,8 +9,10 @@
   <meta name="author" content="Wojciech Wójcik">
 
   
-  <meta name="description" content="Po roku od wydania Symfony 2.0 ukazała się Symfony 2.1 RC1. Zbliżamy się dużymi krokami do wydania stabilnej wersji tego popularnego frameworku.
-">
+  <meta name="description" content="Po aktualizacji MacOS do Mountain Lion z aplikacji Mail zniknął mi czytnik RSS. Jak odnaleźć subskrybowane kanały: 1
+2
+cd ~/Library/Mail/V2/RSS/
+find &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -99,6 +101,54 @@
       <div class="span8">
 <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/05/brak-kanalow-rss-w-applikacji-mail-w-mountain-lion/">Brak kanałów RSS w applikacji Mail w Mountain Lion</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-05T10:56:00+02:00" pubdate data-updated="true">Aug 5<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/08/05/brak-kanalow-rss-w-applikacji-mail-w-mountain-lion/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Po aktualizacji MacOS do Mountain Lion z aplikacji Mail zniknął mi czytnik RSS.</p>
+
+<p>Jak odnaleźć subskrybowane kanały:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd ~/Library/Mail/V2/RSS/
+</span><span class='line'>find . -name "Info.plist" -exec grep -A 1 Feed {} \; | grep string | sed 's/^[^>]*>//' | sed 's/&lt;[^>]*>$//'</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Otrzymujemy listę subskrybowanych kanałów, którą możemy wkleić np do  Reeder lub Google Reader.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -471,44 +521,6 @@ Ceny chyba nie na naszą kieszeń, ale może to tylko moje zdanie.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/31/konfiguracja-serwera-nginx-dla-projektow-w-symfony/">Konfiguracja serwera NGINX dla projektów w Symfony</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-31T08:27:00+02:00" pubdate data-updated="true">Jul 31<span>st</span>, 2012</time>
-        
-         | <a href="/blog/2012/07/31/konfiguracja-serwera-nginx-dla-projektow-w-symfony/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Na tej <a href=http://wiki.nginx.org/Symfony>stronie</a> można zobaczyć jak przygotować serwer Nginx dla projektów stworzonych w Symfony i Symfony2.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -525,11 +537,15 @@ Ceny chyba nie na naszą kieszeń, ale może to tylko moje zdanie.</p>
       
         <section>
   <h1>Kategorie</h1>
-    <ul id="category-list"><li><a href='/blog/categories/heroku'>Heroku (1)</a></li><li><a href='/blog/categories/javascript'>Javascript (1)</a></li><li><a href='/blog/categories/macos'>MacOS (1)</a></li><li><a href='/blog/categories/ruby-on-rails'>Ruby on Rails (2)</a></li><li><a href='/blog/categories/symfony'>Symfony (4)</a></li><li><a href='/blog/categories/titanium'>Titanium (4)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/heroku'>Heroku (1)</a></li><li><a href='/blog/categories/javascript'>Javascript (1)</a></li><li><a href='/blog/categories/macos'>MacOS (2)</a></li><li><a href='/blog/categories/ruby-on-rails'>Ruby on Rails (2)</a></li><li><a href='/blog/categories/symfony'>Symfony (4)</a></li><li><a href='/blog/categories/titanium'>Titanium (4)</a></li></ul>
 </section>
 <section>
   <h2>Ostatnie posty</h2>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/08/05/brak-kanalow-rss-w-applikacji-mail-w-mountain-lion/">Brak kanałów RSS w applikacji Mail w Mountain Lion</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/08/05/wydano-symfony-2-dot-1-rc1/">Wydano Symfony 2.1 RC1</a>
@@ -547,15 +563,11 @@ Ceny chyba nie na naszą kieszeń, ale może to tylko moje zdanie.</p>
         <a href="/blog/2012/08/01/zmiany-w-heroku/">Zmiany w Heroku</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/08/01/wydano-titanium-mobile-sdk-2-dot-1-1/">Wydano Titanium Mobile SDK 2.1.1</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tag</h1>
-    <span id="tag-cloud"><a href='/blog/categories/heroku' style='font-size: 115.0%'>Heroku(1)</a> <a href='/blog/categories/javascript' style='font-size: 115.0%'>Javascript(1)</a> <a href='/blog/categories/macos' style='font-size: 115.0%'>MacOS(1)</a> <a href='/blog/categories/ruby-on-rails' style='font-size: 130.0%'>Ruby on Rails(2)</a> <a href='/blog/categories/symfony' style='font-size: 160.0%'>Symfony(4)</a> <a href='/blog/categories/titanium' style='font-size: 160.0%'>Titanium(4)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/heroku' style='font-size: 115.0%'>Heroku(1)</a> <a href='/blog/categories/javascript' style='font-size: 115.0%'>Javascript(1)</a> <a href='/blog/categories/macos' style='font-size: 130.0%'>MacOS(2)</a> <a href='/blog/categories/ruby-on-rails' style='font-size: 130.0%'>Ruby on Rails(2)</a> <a href='/blog/categories/symfony' style='font-size: 160.0%'>Symfony(4)</a> <a href='/blog/categories/titanium' style='font-size: 160.0%'>Titanium(4)</a> </span>
 </section>
 
 <section>

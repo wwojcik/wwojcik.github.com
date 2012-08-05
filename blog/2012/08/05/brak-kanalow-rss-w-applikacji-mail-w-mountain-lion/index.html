@@ -5,11 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Javascript - Wojciech Wójcik</title>
+  <title>Brak kanałów RSS w applikacji Mail w Mountain Lion - Wojciech Wójcik</title>
   <meta name="author" content="Wojciech Wójcik">
 
   
-  <meta name="description" content="Category: Javascript">
+  <meta name="description" content="Po aktualizacji MacOS do Mountain Lion z aplikacji Mail zniknął mi czytnik RSS. Jak odnaleźć subskrybowane kanały: 1
+2
+cd ~/Library/Mail/V2/RSS/
+find &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://wwojcik.github.comblog/categories/javascript">
+  <link rel="canonical" href="http://wwojcik.github.com/blog/2012/08/05/brak-kanalow-rss-w-applikacji-mail-w-mountain-lion">
   <link href="/favicon.ico" rel="icon">
   
   <link href="/assets/bootstrap/css/spacelab.min.css" rel="stylesheet" type="text/css">
@@ -97,41 +100,114 @@
         <div class="row">
   <div class="span8">
     
-      <div class="page-header">
-        <h1>Category: Javascript</h1>
-        
-      </div>
+  <header>
     
+      <h1 class="entry-title">Brak kanałów RSS w applikacji Mail w Mountain Lion</h1>
+    
+    
+      <p class="meta">
+        
 
-    <div id="blog-archives" class="category">
+
+
+
+
 
 
 
   
-  <h2>2012</h2>
 
-<article>
-  <td class="day">
-  <h3><small><time datetime="2012-07-31T14:45:00+02:00" pubdate><span class='month'>Jul</span> <span class='day'>31</span></time></small></h3>
-</td>
-<td>
-  
-  <h3><a href="/blog/2012/07/31/klient-sip-z-wykorzystaniem-sip-js/">Klient SIP z wykorzystaniem sip-js</a></h3>
-  
-  <h3><small>opublikowano <a class='category' href='/blog/categories/javascript/'>Javascript</a></small></h3>
-  
-</td>
 
-</article>
+<time datetime="2012-08-05T10:56:00+02:00" pubdate data-updated="true">Aug 5<span>th</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
 
+
+  
+  
+  <div class="entry-content"><p>Po aktualizacji MacOS do Mountain Lion z aplikacji Mail zniknął mi czytnik RSS.</p>
+
+<p>Jak odnaleźć subskrybowane kanały:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd ~/Library/Mail/V2/RSS/
+</span><span class='line'>find . -name "Info.plist" -exec grep -A 1 Feed {} \; | grep string | sed 's/^[^>]*>//' | sed 's/&lt;[^>]*>$//'</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Otrzymujemy listę subskrybowanych kanałów, którą możemy wkleić np do  Reeder lub Google Reader.</p>
 </div>
 
+  
 
+
+    <footer>
+      <p class="meta">
+        
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Wojciech Wójcik</span></span>
+
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-05T10:56:00+02:00" pubdate data-updated="true">Aug 5<span>th</span>, 2012</time>
+        
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/macos/'>MacOS</a>
+  
+</span>
+
+
+      </p>
+      
+        <div class="sharing">
+  <br/>
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://wwojcik.github.com/blog/2012/08/05/brak-kanalow-rss-w-applikacji-mail-w-mountain-lion/" data-via="wojtaswojcik" data-counturl="http://wwojcik.github.com/blog/2012/08/05/brak-kanalow-rss-w-applikacji-mail-w-mountain-lion/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+      
+      <p class="meta">
+        
+          <a class="basic-alignment left" href="/blog/2012/08/05/wydano-symfony-2-dot-1-rc1/" title="Previous Post: Wydano Symfony 2.1 RC1">&laquo; Wydano Symfony 2.1 RC1</a>
+        
+        
+      </p>
+    </footer>
     
-
+    
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+      </section>
     
   </div>
 
+  
   <div class="span4 sidebar">
     <div class="well">
       
@@ -228,6 +304,8 @@
   </div>
 
 </div>
+
+
       </div>
     </div>
     <footer class="footer"><p>
@@ -244,7 +322,10 @@
       var disqus_shortname = 'wojciechwojcikblog';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://wwojcik.github.com/blog/2012/08/05/brak-kanalow-rss-w-applikacji-mail-w-mountain-lion/';
+        var disqus_url = 'http://wwojcik.github.com/blog/2012/08/05/brak-kanalow-rss-w-applikacji-mail-w-mountain-lion/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

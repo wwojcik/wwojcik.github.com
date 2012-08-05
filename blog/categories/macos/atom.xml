@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MacOS | Wojciech Wójcik]]></title>
   <link href="http://wwojcik.github.com/blog/categories/macos/atom.xml" rel="self"/>
   <link href="http://wwojcik.github.com/"/>
-  <updated>2012-08-05T10:37:11+02:00</updated>
+  <updated>2012-08-05T11:02:40+02:00</updated>
   <id>http://wwojcik.github.com/</id>
   <author>
     <name><![CDATA[Wojciech Wójcik]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Brak kanałów RSS w applikacji Mail w Mountain Lion]]></title>
+    <link href="http://wwojcik.github.com/blog/2012/08/05/brak-kanalow-rss-w-applikacji-mail-w-mountain-lion/"/>
+    <updated>2012-08-05T10:56:00+02:00</updated>
+    <id>http://wwojcik.github.com/blog/2012/08/05/brak-kanalow-rss-w-applikacji-mail-w-mountain-lion</id>
+    <content type="html"><![CDATA[<p>Po aktualizacji MacOS do Mountain Lion z aplikacji Mail zniknął mi czytnik RSS.</p>
+
+<p>Jak odnaleźć subskrybowane kanały:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd ~/Library/Mail/V2/RSS/
+</span><span class='line'>find . -name "Info.plist" -exec grep -A 1 Feed {} \; | grep string | sed 's/&lt;sup>[&lt;sup>>]*>//'&lt;/sup>&lt;/sup> | sed 's/&lt;[&lt;sup>>]*>$//'&lt;/sup></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Otrzymujemy listę subskrybowanych kanałów, którą możemy wkleić np do  Reeder lub Google Reader.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Jest make nie ma make]]></title>
