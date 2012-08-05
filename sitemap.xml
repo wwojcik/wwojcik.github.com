@@ -2,88 +2,88 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://wwojcik.github.com/blog/2012/07/30/polaczenie-titanium-i-foursquare/</loc>
-        <lastmod>2012-08-05T12:36:11+02:00</lastmod>
+        <lastmod>2012-08-05T22:54:27+02:00</lastmod>
     </url>
     <url>
         <loc>http://wwojcik.github.com/blog/2012/07/30/ocen-aplikacje-dla-titanium-mobile/</loc>
-        <lastmod>2012-08-05T12:35:26+02:00</lastmod>
+        <lastmod>2012-08-05T22:54:27+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://wwojcik.github.com/blog/2012/07/31/konfiguracja-serwera-nginx-dla-projektow-w-symfony/
         </loc>
-        <lastmod>2012-08-05T12:37:14+02:00</lastmod>
+        <lastmod>2012-08-05T22:54:27+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://wwojcik.github.com/blog/2012/07/31/ustawienie-praw-do-katalogow-w-symfony2/
         </loc>
-        <lastmod>2012-07-31T10:47:05+02:00</lastmod>
+        <lastmod>2012-08-05T22:54:27+02:00</lastmod>
     </url>
     <url>
         <loc>http://wwojcik.github.com/blog/2012/07/31/klient-sip-z-wykorzystaniem-sip-js/</loc>
-        <lastmod>2012-07-31T14:54:18+02:00</lastmod>
+        <lastmod>2012-08-05T22:54:27+02:00</lastmod>
     </url>
     <url>
         <loc>http://wwojcik.github.com/blog/2012/07/31/jest-make-nie-ma-make/</loc>
-        <lastmod>2012-07-31T18:49:41+02:00</lastmod>
+        <lastmod>2012-08-05T22:54:27+02:00</lastmod>
     </url>
     <url>
         <loc>http://wwojcik.github.com/blog/2012/07/31/knpuniversity-prawie-jak-railscasts/</loc>
-        <lastmod>2012-07-31T23:36:42+02:00</lastmod>
+        <lastmod>2012-08-05T22:54:27+02:00</lastmod>
     </url>
     <url>
         <loc>http://wwojcik.github.com/blog/2012/08/01/wydano-titanium-mobile-sdk-2-dot-1-1/</loc>
-        <lastmod>2012-08-05T12:34:50+02:00</lastmod>
+        <lastmod>2012-08-05T22:54:27+02:00</lastmod>
     </url>
     <url>
         <loc>http://wwojcik.github.com/blog/2012/08/01/zmiany-w-heroku/</loc>
-        <lastmod>2012-08-01T23:59:03+02:00</lastmod>
+        <lastmod>2012-08-05T22:54:27+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://wwojcik.github.com/blog/2012/08/04/jak-korzystac-z-google-calendar-api-w-ruby-on-rails/
         </loc>
-        <lastmod>2012-08-04T10:15:29+02:00</lastmod>
+        <lastmod>2012-08-05T22:54:27+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://wwojcik.github.com/blog/2012/08/04/wykorzystanie-informacji-o-polozeniu-w-titanium-mobile/
         </loc>
-        <lastmod>2012-08-04T10:23:25+02:00</lastmod>
+        <lastmod>2012-08-05T22:54:27+02:00</lastmod>
     </url>
     <url>
         <loc>http://wwojcik.github.com/blog/2012/08/05/wydano-symfony-2-dot-1-rc1/</loc>
-        <lastmod>2012-08-05T12:34:30+02:00</lastmod>
+        <lastmod>2012-08-05T22:54:27+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://wwojcik.github.com/blog/2012/08/05/brak-kanalow-rss-w-applikacji-mail-w-mountain-lion/
         </loc>
-        <lastmod>2012-08-05T11:02:13+02:00</lastmod>
+        <lastmod>2012-08-05T22:54:27+02:00</lastmod>
     </url>
     <url>
         <loc>http://wwojcik.github.com/blog/2012/08/05/integracja-sap-i-titanium-mobile/</loc>
-        <lastmod>2012-08-05T12:31:54+02:00</lastmod>
+        <lastmod>2012-08-05T22:54:27+02:00</lastmod>
     </url>
     <url>
         <loc>http://wwojcik.github.com/blog/2012/08/05/rest-apis-w-symfony2/</loc>
-        <lastmod>2012-08-05T14:41:38+02:00</lastmod>
+        <lastmod>2012-08-05T22:54:27+02:00</lastmod>
     </url>
     <url>
         <loc>http://wwojcik.github.com/blog/2012/08/05/gitignore-dla-roznych-projektow/</loc>
-        <lastmod>2012-08-05T22:11:43+02:00</lastmod>
+        <lastmod>2012-08-05T22:54:27+02:00</lastmod>
     </url>
     <url>
         <loc>http://wwojcik.github.com/404.html</loc>
-        <lastmod>2012-07-31T09:40:30+02:00</lastmod>
+        <lastmod>2012-08-05T22:54:27+02:00</lastmod>
     </url>
     <url>
         <loc>http://wwojcik.github.com/blog/archives/</loc>
-        <lastmod>2012-08-05T22:11:43+02:00</lastmod>
+        <lastmod>2012-08-05T22:54:27+02:00</lastmod>
     </url>
     <url>
         <loc>http://wwojcik.github.com/</loc>
-        <lastmod>2012-08-05T22:11:43+02:00</lastmod>
+        <lastmod>2012-08-05T22:54:27+02:00</lastmod>
     </url>
 </urlset>
