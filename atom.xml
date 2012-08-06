@@ -4,7 +4,7 @@
   <title><![CDATA[Wojciech Wójcik]]></title>
   <link href="http://wwojcik.github.com/atom.xml" rel="self"/>
   <link href="http://wwojcik.github.com/"/>
-  <updated>2012-08-05T22:54:37+02:00</updated>
+  <updated>2012-08-06T14:32:01+02:00</updated>
   <id>http://wwojcik.github.com/</id>
   <author>
     <name><![CDATA[Wojciech Wójcik]]></name>
@@ -12,6 +12,37 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Devise z Omniauth w Ruby On Rails]]></title>
+    <link href="http://wwojcik.github.com/blog/2012/08/06/devise-z-omniauth-w-ruby-on-rails/"/>
+    <updated>2012-08-06T14:26:00+02:00</updated>
+    <id>http://wwojcik.github.com/blog/2012/08/06/devise-z-omniauth-w-ruby-on-rails</id>
+    <content type="html"><![CDATA[<p>W taki prosty sposób można połączyć swoja aplikację z różnymi serwisami i umożliwić logowanie do aplikacji z wykorzystaniem innych serwisów</p>
+
+<!--more-->
+
+
+<div><script src='https://gist.github.com/993566.js?file='></script>
+<noscript><pre><code>gem 'pg'
+group :development do
+    gem 'ruby-debug'
+end
+gem 'rake', '~&gt; 0.8.7'
+gem 'devise'
+gem 'oa-oauth', :require =&gt; 'omniauth/oauth'
+gem 'omniauth'
+gem 'haml'
+gem 'dynamic_form'
+gem 'sass'
+gem 'jquery-rails'
+gem 'cancan'
+gem 'uuidtools'</code></pre></noscript></div>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[gitignore dla różnych projektów]]></title>

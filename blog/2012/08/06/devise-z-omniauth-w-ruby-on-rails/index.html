@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Zmiany w Heroku - Wojciech Wójcik</title>
+  <title>Devise z Omniauth w Ruby On Rails - Wojciech Wójcik</title>
   <meta name="author" content="Wojciech Wójcik">
 
   
-  <meta name="description" content="Dzisiaj Heroku wydało free Heroku Postgres dev plan, który będzie zastępował Shared Database.
-W otrzymanym mailu od Heroku w tej sprawie można &hellip;">
+  <meta name="description" content="Opis w jaki sposób połączyć Devise z Omniauth i korzystać z wielu serwisów">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ W otrzymanym mailu od Heroku w tej sprawie można &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://wwojcik.github.com/blog/2012/08/01/zmiany-w-heroku">
+  <link rel="canonical" href="http://wwojcik.github.com/blog/2012/08/06/devise-z-omniauth-w-ruby-on-rails">
   <link href="/favicon.ico" rel="icon">
   
   <link href="/assets/bootstrap/css/spacelab.min.css" rel="stylesheet" type="text/css">
@@ -43,11 +42,11 @@ W otrzymanym mailu od Heroku w tej sprawie można &hellip;">
   </script>
 
 
-  <meta property="og:url" value="http://wwojcik.github.com/blog/2012/08/01/zmiany-w-heroku/">
+  <meta property="og:url" value="http://wwojcik.github.com/blog/2012/08/06/devise-z-omniauth-w-ruby-on-rails/">
 <meta property="fb:app_id" content="432300816808833">
 
-<meta property="og:title" value="Zmiany w Heroku">
-<meta property="og:description" value="">
+<meta property="og:title" value="Devise z Omniauth w Ruby On Rails">
+<meta property="og:description" value="Opis w jaki sposób połączyć Devise z Omniauth i korzystać z wielu serwisów">
 <meta property="og:type" content="article"/>
  
 
@@ -109,7 +108,7 @@ W otrzymanym mailu od Heroku w tej sprawie można &hellip;">
     
   <header>
     
-      <h1 class="entry-title">Zmiany w Heroku</h1>
+      <h1 class="entry-title">Devise z Omniauth w Ruby On Rails</h1>
     
     
       <p class="meta">
@@ -125,7 +124,7 @@ W otrzymanym mailu od Heroku w tej sprawie można &hellip;">
   
 
 
-<time datetime="2012-08-01T23:54:00+02:00" pubdate data-updated="true">Aug 1<span>st</span>, 2012</time>
+<time datetime="2012-08-06T14:26:00+02:00" pubdate data-updated="true">Aug 6<span>th</span>, 2012</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -136,10 +135,28 @@ W otrzymanym mailu od Heroku w tej sprawie można &hellip;">
 
   
   
-  <div class="entry-content"><p>Dzisiaj Heroku wydało free Heroku Postgres <code>dev</code> plan, który będzie zastępował Shared Database.
-W otrzymanym mailu od Heroku w tej sprawie można przeczytać:</p>
+  <div class="entry-content"><p>W taki prosty sposób można połączyć swoja aplikację z różnymi serwisami i umożliwić logowanie do aplikacji z wykorzystaniem innych serwisów</p>
 
-<blockquote><p>Because of the significant stability and feature improvements in this new service, we are deprecating Shared Databases and will begin automatically migrating databases gradually over the month of August, beginning on August 9. Prior to your migration, we will send you an e-mail notice with the exact date & time.</p><p><br/>If you have unusual circumstances and require more time before the auto migration occurs, you can request an extension to your automatic migration date. We will do our best to honor all requests.</p><p><br/>The new `dev` plan offers many advantages, including Postgres 9.1 with schemaless SQL, direct psql access, data clips, and a web management interface. It also imposes a hard limit of 10,000 rows, comparable to the 5mb limit you have now. Check the size of your existing database if you are unsure if you are over the limit.</p><p><br/>We strongly encourage you to migrate the database(s) yourself. By doing this you will have complete control over when the migration and associated downtime occur. As an added incentive, we will increase the row-limit from 10,000 to 14,000 rows if you migrate yourself prior to 12pm PDT August 9. </p><p><br/>Don’t hesitate. You can begin right now by provisioning a dev database.</p></blockquote>
+<!--more-->
+
+
+<div><script src='https://gist.github.com/993566.js?file='></script>
+<noscript><pre><code>gem 'pg'
+group :development do
+    gem 'ruby-debug'
+end
+gem 'rake', '~&gt; 0.8.7'
+gem 'devise'
+gem 'oa-oauth', :require =&gt; 'omniauth/oauth'
+gem 'omniauth'
+gem 'haml'
+gem 'dynamic_form'
+gem 'sass'
+gem 'jquery-rails'
+gem 'cancan'
+gem 'uuidtools'</code></pre></noscript></div>
+
+
 
 </div>
 
@@ -165,12 +182,12 @@ W otrzymanym mailu od Heroku w tej sprawie można przeczytać:</p>
   
 
 
-<time datetime="2012-08-01T23:54:00+02:00" pubdate data-updated="true">Aug 1<span>st</span>, 2012</time>
+<time datetime="2012-08-06T14:26:00+02:00" pubdate data-updated="true">Aug 6<span>th</span>, 2012</time>
         
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/heroku/'>Heroku</a>
+    <a class='category' href='/blog/categories/ruby-on-rails/'>Ruby on Rails</a>
   
 </span>
 
@@ -180,7 +197,7 @@ W otrzymanym mailu od Heroku w tej sprawie można przeczytać:</p>
         <div class="sharing">
   <br/>
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://wwojcik.github.com/blog/2012/08/01/zmiany-w-heroku/" data-via="wojtaswojcik" data-counturl="http://wwojcik.github.com/blog/2012/08/01/zmiany-w-heroku/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://wwojcik.github.com/blog/2012/08/06/devise-z-omniauth-w-ruby-on-rails/" data-via="wojtaswojcik" data-counturl="http://wwojcik.github.com/blog/2012/08/06/devise-z-omniauth-w-ruby-on-rails/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -193,10 +210,8 @@ W otrzymanym mailu od Heroku w tej sprawie można przeczytać:</p>
       
       <p class="meta">
         
-          <a class="basic-alignment left" href="/blog/2012/08/01/wydano-titanium-mobile-sdk-2-dot-1-1/" title="Previous Post: Wydano Titanium Mobile SDK 2.1.1">&laquo; Wydano Titanium Mobile SDK 2.1.1</a>
+          <a class="basic-alignment left" href="/blog/2012/08/05/gitignore-dla-roznych-projektow/" title="Previous Post: gitignore dla różnych projektów">&laquo; gitignore dla różnych projektów</a>
         
-        
-          <a class="basic-alignment right" href="/blog/2012/08/04/jak-korzystac-z-google-calendar-api-w-ruby-on-rails/" title="Next Post: Jak korzystać z Google Calendar API w Ruby on Rails">Jak korzystać z Google Calendar API w Ruby on Rails &raquo;</a>
         
       </p>
     </footer>
@@ -246,7 +261,7 @@ W otrzymanym mailu od Heroku w tej sprawie można przeczytać:</p>
 </section>
 <section>
   <h1>Tag</h1>
-    <span id="tag-cloud"><span class='rank-3'><a href='/tags/RoR'>RoR</a></span> <span class='rank-5'><a href='/tags/javascript'>javascript</a></span> <span class='rank-5'><a href='/tags/Rest'>Rest</a></span> <span class='rank-5'><a href='/tags/macos'>macos</a></span> <span class='rank-5'><a href='/tags/git'>git</a></span> <span class='rank-5'><a href='/tags/sip'>sip</a></span> <span class='rank-5'><a href='/tags/SAP'>SAP</a></span> <span class='rank-5'><a href='/tags/Google'>Google</a></span> <span class='rank-4'><a href='/tags/gist'>gist</a></span> <span class='rank-5'><a href='/tags/foursquere'>foursquere</a></span> <span class='rank-4'><a href='/tags/iphone'>iphone</a></span> <span class='rank-1'><a href='/tags/Symfony'>Symfony</a></span> <span class='rank-4'><a href='/tags/android'>android</a></span> <span class='rank-5'><a href='/tags/Heroku'>Heroku</a></span> <span class='rank-5'><a href='/tags/Nginx'>Nginx</a></span> <span class='rank-5'><a href='/tags/MacOS'>MacOS</a></span> <span class='rank-1'><a href='/tags/Titanium'>Titanium</a></span> </span>
+    <span id="tag-cloud"><span class='rank-5'><a href='/tags/Nginx'>Nginx</a></span> <span class='rank-5'><a href='/tags/Google'>Google</a></span> <span class='rank-5'><a href='/tags/Heroku'>Heroku</a></span> <span class='rank-4'><a href='/tags/iphone'>iphone</a></span> <span class='rank-5'><a href='/tags/MacOS'>MacOS</a></span> <span class='rank-4'><a href='/tags/android'>android</a></span> <span class='rank-5'><a href='/tags/SAP'>SAP</a></span> <span class='rank-5'><a href='/tags/foursquere'>foursquere</a></span> <span class='rank-3'><a href='/tags/RoR'>RoR</a></span> <span class='rank-5'><a href='/tags/macos'>macos</a></span> <span class='rank-5'><a href='/tags/javascript'>javascript</a></span> <span class='rank-5'><a href='/tags/git'>git</a></span> <span class='rank-1'><a href='/tags/Symfony'>Symfony</a></span> <span class='rank-5'><a href='/tags/Rest'>Rest</a></span> <span class='rank-4'><a href='/tags/gist'>gist</a></span> <span class='rank-5'><a href='/tags/sip'>sip</a></span> <span class='rank-1'><a href='/tags/Titanium'>Titanium</a></span> </span>
 </section>
 
 <section>
@@ -326,8 +341,8 @@ W otrzymanym mailu od Heroku w tej sprawie można przeczytać:</p>
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://wwojcik.github.com/blog/2012/08/01/zmiany-w-heroku/';
-        var disqus_url = 'http://wwojcik.github.com/blog/2012/08/01/zmiany-w-heroku/';
+        var disqus_identifier = 'http://wwojcik.github.com/blog/2012/08/06/devise-z-omniauth-w-ruby-on-rails/';
+        var disqus_url = 'http://wwojcik.github.com/blog/2012/08/06/devise-z-omniauth-w-ruby-on-rails/';
         var disqus_script = 'embed.js';
       
     (function () {
