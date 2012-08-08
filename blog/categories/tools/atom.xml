@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tools | Wojciech Wójcik]]></title>
   <link href="http://wwojcik.github.com/blog/categories/tools/atom.xml" rel="self"/>
   <link href="http://wwojcik.github.com/"/>
-  <updated>2012-08-09T00:27:01+02:00</updated>
+  <updated>2012-08-09T00:33:53+02:00</updated>
   <id>http://wwojcik.github.com/</id>
   <author>
     <name><![CDATA[Wojciech Wójcik]]></name>
@@ -22,7 +22,7 @@
 
 <p>Wykorzytsanie tego narzędzia spawi że każdy z członków projektu będzie miał to samo środowisko developerskie u siebie.</p>
 
-<p>Tutaj można znaleźć jak skorzystać z <a href="https://github.com/jakzal/puppet-symfony">Symfony</a> lub <a href="https://github.com/rudyl313/rails-cookbook">Ruby on Rails</a> z wykorzytaniem vagrant.</p>
+<p>Tutaj można znaleźć jak skorzystać z <a href="https://github.com/jakzal/puppet-symfony">Symfony</a> lub <a href="https://github.com/rudyl313/rails-cookbook">Ruby on Rails</a> z wykorzystaniem vagrant.</p>
 ]]></content>
   </entry>
   
