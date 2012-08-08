@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tools | Wojciech Wójcik]]></title>
   <link href="http://wwojcik.github.com/blog/categories/tools/atom.xml" rel="self"/>
   <link href="http://wwojcik.github.com/"/>
-  <updated>2012-08-06T14:32:01+02:00</updated>
+  <updated>2012-08-09T00:27:01+02:00</updated>
   <id>http://wwojcik.github.com/</id>
   <author>
     <name><![CDATA[Wojciech Wójcik]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Vagrant jako środowisko dla programistów]]></title>
+    <link href="http://wwojcik.github.com/blog/2012/08/09/vagrant-jako-srodowisko-dla-programistow/"/>
+    <updated>2012-08-09T00:16:00+02:00</updated>
+    <id>http://wwojcik.github.com/blog/2012/08/09/vagrant-jako-srodowisko-dla-programistow</id>
+    <content type="html"><![CDATA[<p>Polecam korzystanie z Vagrant szczególnie dla zespołów, które pracują nad jedym projektem.</p>
+
+<p>Wykorzytsanie tego narzędzia spawi że każdy z członków projektu będzie miał to samo środowisko developerskie u siebie.</p>
+
+<p>Tutaj można znaleźć jak skorzystać z <a href="https://github.com/jakzal/puppet-symfony">Symfony</a> lub <a href="https://github.com/rudyl313/rails-cookbook">Ruby on Rails</a> z wykorzytaniem vagrant.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[gitignore dla różnych projektów]]></title>
