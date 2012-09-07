@@ -4,7 +4,7 @@
   <title><![CDATA[Wojciech Wójcik]]></title>
   <link href="http://wwojcik.github.com/atom.xml" rel="self"/>
   <link href="http://wwojcik.github.com/"/>
-  <updated>2012-09-07T13:16:11+02:00</updated>
+  <updated>2012-09-07T13:33:36+02:00</updated>
   <id>http://wwojcik.github.com/</id>
   <author>
     <name><![CDATA[Wojciech Wójcik]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Znamy datę wydania Titanium SDK 3.0]]></title>
+    <link href="http://wwojcik.github.com/blog/2012/09/07/znamy-date-wydania-titanium-sdk-3-dot-0/"/>
+    <updated>2012-09-07T13:30:00+02:00</updated>
+    <id>http://wwojcik.github.com/blog/2012/09/07/znamy-date-wydania-titanium-sdk-3-dot-0</id>
+    <content type="html"><![CDATA[<p>Poznaliśmy planowaną datę wydania Titanium SDK 3.0. Jak można było przypuszczać ukaże się 22.10 podczas odbywającej się w San Francisco konferencji CodeStrong 2012.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Wydano Symfony 2.1]]></title>
@@ -567,69 +576,6 @@ function checkReminderToRate() {
         alertDialog.show();
     }
 }</code></pre></noscript></div>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Połączenie Titanium i Foursquare]]></title>
-    <link href="http://wwojcik.github.com/blog/2012/07/30/polaczenie-titanium-i-foursquare/"/>
-    <updated>2012-07-30T17:10:00+02:00</updated>
-    <id>http://wwojcik.github.com/blog/2012/07/30/polaczenie-titanium-i-foursquare</id>
-    <content type="html"><![CDATA[<p>Znalazłem na githubie ciekawy gist, który może być przydatny przy pisaniu aplikacji w Titanium Mobile</p>
-
-<!-- more -->
-
-
-<div><script src='https://gist.github.com/885560.js?file='></script>
-<noscript><pre><code>/**
-*
-*
-* Copyright 2011 Aaron K. Saunders, Clearly Innovative Inc
-*
-* Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*     &lt;a href=&quot;http://www.apache.org/licenses/LICENSE-2.0&quot;&gt;http://www.apache.org/licenses/LICENSE-2.0&lt;/a&gt;
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-Ti.include('fsq_module.js');
-
-FOURSQModule.init('CLIENT ID GOES HERE', 'http://www.clearlyinnovative.com/oAuth.html');
-FOURSQModule.login(loginSuccess, function(e) {
-    Titanium.UI.createAlertDialog({
-        title: &quot;LOGIN FAILED&quot;,
-        message: e,
-        buttonNames: ['OK']
-    }).show();
-});
-
-function loginSuccess(e) {
-    FOURSQModule.callMethod(&quot;users/self&quot;, {}, onSuccess_self, function(e) {
-        Titanium.UI.createAlertDialog({
-            title: &quot;users/self: METHOD FAILED FAILED&quot;,
-            message: e,
-            buttonNames: ['OK']
-        }).show();
-    });
-};
-
-function onSuccess_self(xhr) {
-    Ti.API.info(&quot; checkins response-&gt; &quot; + xhr.responseText);
-    var respJSON = JSON.parse(xhr.responseText);
-    Ti.API.info(&quot; Name      -&gt; &quot; + respJSON.response.user.firstName + &quot; &quot; + respJSON.response.user.lastName);
-    Ti.API.info(&quot; Email     -&gt; &quot; + respJSON.response.user.contact.email);
-    Ti.API.info(&quot; Badges    -&gt; &quot; + respJSON.response.user.badges.count);
-    Ti.API.info(&quot; Checkins  -&gt; &quot; + respJSON.response.user.checkins.count);
-};</code></pre></noscript></div>
 
 
 
