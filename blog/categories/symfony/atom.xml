@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Symfony | Wojciech Wójcik]]></title>
   <link href="http://wwojcik.github.com/blog/categories/symfony/atom.xml" rel="self"/>
   <link href="http://wwojcik.github.com/"/>
-  <updated>2012-09-02T10:55:38+02:00</updated>
+  <updated>2012-09-07T13:16:11+02:00</updated>
   <id>http://wwojcik.github.com/</id>
   <author>
     <name><![CDATA[Wojciech Wójcik]]></name>
@@ -12,6 +12,18 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Wydano Symfony 2.1]]></title>
+    <link href="http://wwojcik.github.com/blog/2012/09/07/wydano-symfony-2-dot-1/"/>
+    <updated>2012-09-07T12:45:00+02:00</updated>
+    <id>http://wwojcik.github.com/blog/2012/09/07/wydano-symfony-2-dot-1</id>
+    <content type="html"><![CDATA[<p>Po wielu miesiącach pracy zespół devoloperów Symfony zdecydował się na wydanie stabilnej wersji tego frameworka.</p>
+
+<p>Pod tym <a href="http://symfony.com/blog/symfony-2-1-0-released?utm_source=twitterfeed&utm_medium=twitter&utm_campaign=Feed%3A+symfony%2Fblog+%28Symfony+Blog%29">adresem</a>
+można przeczytać informację Fabiena Potencier na temat wydania wersji 2.1.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[REST API w Symfony2]]></title>
@@ -65,15 +77,6 @@ sudo chmod +a &quot;$APACHE_USER allow delete,write,append,file_inherit,director
 
 echo &quot;app/cache &amp; app/logs been properly chmod'ed for $USER and $APACHE_USER&quot;</code></pre></noscript></div>
 </p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Konfiguracja serwera NGINX dla projektów w Symfony]]></title>
-    <link href="http://wwojcik.github.com/blog/2012/07/31/konfiguracja-serwera-nginx-dla-projektow-w-symfony/"/>
-    <updated>2012-07-31T08:27:00+02:00</updated>
-    <id>http://wwojcik.github.com/blog/2012/07/31/konfiguracja-serwera-nginx-dla-projektow-w-symfony</id>
-    <content type="html"><![CDATA[<p>Na tej <a href=http://wiki.nginx.org/Symfony>stronie</a> można zobaczyć jak przygotować serwer Nginx dla projektów stworzonych w Symfony i Symfony2.</p>
 ]]></content>
   </entry>
   

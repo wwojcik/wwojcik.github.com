@@ -4,7 +4,7 @@
   <title><![CDATA[Wojciech Wójcik]]></title>
   <link href="http://wwojcik.github.com/atom.xml" rel="self"/>
   <link href="http://wwojcik.github.com/"/>
-  <updated>2012-09-02T10:55:38+02:00</updated>
+  <updated>2012-09-07T13:16:11+02:00</updated>
   <id>http://wwojcik.github.com/</id>
   <author>
     <name><![CDATA[Wojciech Wójcik]]></name>
@@ -14,11 +14,23 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Wydano Symfony 2.1]]></title>
+    <link href="http://wwojcik.github.com/blog/2012/09/07/wydano-symfony-2-dot-1/"/>
+    <updated>2012-09-07T12:45:00+02:00</updated>
+    <id>http://wwojcik.github.com/blog/2012/09/07/wydano-symfony-2-dot-1</id>
+    <content type="html"><![CDATA[<p>Po wielu miesiącach pracy zespół devoloperów Symfony zdecydował się na wydanie stabilnej wersji tego frameworka.</p>
+
+<p>Pod tym <a href="http://symfony.com/blog/symfony-2-1-0-released?utm_source=twitterfeed&utm_medium=twitter&utm_campaign=Feed%3A+symfony%2Fblog+%28Symfony+Blog%29">adresem</a>
+można przeczytać informację Fabiena Potencier na temat wydania wersji 2.1.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Nowa wersja Titanium SDK]]></title>
     <link href="http://wwojcik.github.com/blog/2012/09/02/nowa-wersja-titanium-sdk/"/>
     <updated>2012-09-02T10:53:00+02:00</updated>
     <id>http://wwojcik.github.com/blog/2012/09/02/nowa-wersja-titanium-sdk</id>
-    <content type="html"><![CDATA[<p>Ukazała się kolejna aktualizacja Titanium SDK przynosząca szereg poprawek. Opis zmian można znaleźć pod tyma <a href="http://docs.appcelerator.com/titanium/release-notes/?version=2.1.2.GA#new_apis">adresem</a>.</p>
+    <content type="html"><![CDATA[<p>Ukazała się kolejna aktualizacja Titanium SDK przynosząca szereg poprawek. Opis zmian można znaleźć pod tym <a href="http://docs.appcelerator.com/titanium/release-notes/?version=2.1.2.GA#new_apis">adresem</a>.</p>
 ]]></content>
   </entry>
   
