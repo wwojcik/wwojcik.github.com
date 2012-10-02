@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Symfony | Wojciech Wójcik]]></title>
   <link href="http://wwojcik.github.com/blog/categories/symfony/atom.xml" rel="self"/>
   <link href="http://wwojcik.github.com/"/>
-  <updated>2012-09-07T13:33:36+02:00</updated>
+  <updated>2012-10-02T09:13:09+02:00</updated>
   <id>http://wwojcik.github.com/</id>
   <author>
     <name><![CDATA[Wojciech Wójcik]]></name>
@@ -12,6 +12,86 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Switch user z wykorzystaniem KnpMenu i Bootstrap Twitter w Symfony2]]></title>
+    <link href="http://wwojcik.github.com/blog/2012/10/02/switch-user-z-wykorzystaniem-knpmenu-i-bootstrap-twitter-w-symfony2/"/>
+    <updated>2012-10-02T09:07:00+02:00</updated>
+    <id>http://wwojcik.github.com/blog/2012/10/02/switch-user-z-wykorzystaniem-knpmenu-i-bootstrap-twitter-w-symfony2</id>
+    <content type="html"><![CDATA[<p>Pisząc projekt w Symfony, który korzysta w BootStrap Twitter może przydać nam się możliwość zmiany użytkownika z poziomu menu.
+Znaleziony gist pokazjue jak taki efekt możemy uzyskać.</p>
+
+<!-- more -->
+
+
+<p><div><script src='https://gist.github.com/1770582.js?file='></script>
+<noscript><pre><code>&lt;?php
+
+namespace Ormigo\Bundle\BackofficeBundle\Menu;
+
+use Knp\Menu\FactoryInterface;
+use Symfony\Component\DependencyInjection\ContainerAware;
+
+use Ormigo\Bundle\UserBundle\Model\User\UserQuery;
+use Symfony\Component\Security\Core\Role\SwitchUserRole;
+
+class Builder extends ContainerAware
+{
+    public function mainMenu(FactoryInterface $factory)
+    {
+        $menu = $factory-&gt;createItem('root');
+        $menu-&gt;setCurrentUri($this-&gt;container-&gt;get('request')-&gt;getRequestUri());
+
+        $menu-&gt;addChild('Dashboard', array(
+            'uri' =&gt; '#',
+        ));
+        $menu-&gt;addChild('Demo View', array(
+            'route' =&gt; 'demo',
+        ));
+
+        return $menu;
+    }
+
+    public function switchUserMenu(FactoryInterface $factory)
+    {
+        $menu = $factory-&gt;createItem('root');
+        $menu-&gt;setAttributes(array(
+            'class' =&gt; 'pull-right',
+            'dropdown' =&gt; true,
+            'divider_append' =&gt; true,
+        ));
+        $menu-&gt;setLabel('Switch User');
+
+        $securityContext = $this-&gt;container-&gt;get('security.context');
+        if ($securityContext-&gt;isGranted('ROLE_ALLOWED_TO_SWITCH') or $securityContext-&gt;isGranted('ROLE_PREVIOUS_ADMIN')) {
+            // The current (may be switched) username.
+            $username = $securityContext-&gt;getToken()-&gt;getUser()-&gt;getUsername();
+
+            // The actual user, if switched, retrieve the correct one.
+            $actualUser = $securityContext-&gt;getToken()-&gt;getUser();
+            foreach ($securityContext-&gt;getToken()-&gt;getRoles() as $role) {
+                if ($role instanceof SwitchUserRole) {
+                    $actualUser = $role-&gt;getSource();
+                    break;
+                }
+            }
+
+            foreach (UserQuery::create()-&gt;find() as $eachUser) {
+                // only show links to different users
+                if ($username !== $eachUser-&gt;getUsername()) {
+                    $menu-&gt;addChild($eachUser-&gt;getUsername(), array('uri' =&gt; '?_switch_user='.$eachUser-&gt;getUsername()));
+                }
+            }
+
+            $menu-&gt;addChild($actualUser-&gt;getUsername(), array('uri' =&gt; '?_switch_user=_exit'));
+        }
+
+        return $menu;
+    }
+}</code></pre></noscript></div>
+</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Wydano Symfony 2.1]]></title>
@@ -53,30 +133,6 @@ znaleźć aż 4 screencasty dotyczące projektów w Symfony.
 i co lepsze już są płatne.  Mam nadzieje że skoro autorzy już chcą kasę to
 będzie z tego serwisu można w przyszłości uzyskać bardziej wartościowe informacje.
 Ceny chyba nie na naszą kieszeń, ale może to tylko moje zdanie.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ustawienie praw do katalogów w Symfony2]]></title>
-    <link href="http://wwojcik.github.com/blog/2012/07/31/ustawienie-praw-do-katalogow-w-symfony2/"/>
-    <updated>2012-07-31T10:41:00+02:00</updated>
-    <id>http://wwojcik.github.com/blog/2012/07/31/ustawienie-praw-do-katalogow-w-symfony2</id>
-    <content type="html"><![CDATA[<p>Prosty skrypt, który po uruchomieniu w katalogu projektu w Symfony2 ustawia poprawnie uprawnienia do katalogów</p>
-
-<!-- more -->
-
-
-<p><div><script src='https://gist.github.com/1560845.js?file='></script>
-<noscript><pre><code>#!/bin/sh
-
-USER=$(whoami)
-APACHE_USER=$(ps axho user,comm|grep -E &quot;httpd|apache&quot;|uniq|grep -v &quot;root&quot;|awk 'END {print $1}')
-
-sudo chmod +a &quot;$USER allow delete,write,append,file_inherit,directory_inherit&quot; app/cache app/logs
-sudo chmod +a &quot;$APACHE_USER allow delete,write,append,file_inherit,directory_inherit&quot; app/cache app/logs
-
-echo &quot;app/cache &amp; app/logs been properly chmod'ed for $USER and $APACHE_USER&quot;</code></pre></noscript></div>
-</p>
 ]]></content>
   </entry>
   

@@ -99,15 +99,21 @@
         <lastmod>2012-09-07T13:33:10+02:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://wwojcik.github.com/blog/2012/10/02/switch-user-z-wykorzystaniem-knpmenu-i-bootstrap-twitter-w-symfony2/
+        </loc>
+        <lastmod>2012-10-02T09:12:28+02:00</lastmod>
+    </url>
+    <url>
         <loc>http://wwojcik.github.com/404.html</loc>
         <lastmod>2012-08-05T22:54:27+02:00</lastmod>
     </url>
     <url>
         <loc>http://wwojcik.github.com/blog/archives/</loc>
-        <lastmod>2012-09-07T13:33:10+02:00</lastmod>
+        <lastmod>2012-10-02T09:12:28+02:00</lastmod>
     </url>
     <url>
         <loc>http://wwojcik.github.com/</loc>
-        <lastmod>2012-09-07T13:33:10+02:00</lastmod>
+        <lastmod>2012-10-02T09:12:28+02:00</lastmod>
     </url>
 </urlset>

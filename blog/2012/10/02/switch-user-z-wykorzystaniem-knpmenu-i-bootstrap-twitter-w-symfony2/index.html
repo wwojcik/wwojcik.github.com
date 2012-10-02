@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Tag: php - Wojciech Wójcik</title>
+  <title>Switch user z wykorzystaniem KnpMenu i Bootstrap Twitter w Symfony2 - Wojciech Wójcik</title>
   <meta name="author" content="Wojciech Wójcik">
 
   
-  <meta name="description" content="Tag: php">
+  <meta name="description" content="Pisząc projekt w Symfony, który korzysta w BootStrap Twitter może przydać nam się możliwość zmiany użytkownika z poziomu menu.
+Znaleziony gist &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://wwojcik.github.comtags/php">
+  <link rel="canonical" href="http://wwojcik.github.com/blog/2012/10/02/switch-user-z-wykorzystaniem-knpmenu-i-bootstrap-twitter-w-symfony2">
   <link href="/favicon.ico" rel="icon">
   
   <link href="/assets/bootstrap/css/spacelab.min.css" rel="stylesheet" type="text/css">
@@ -42,11 +43,11 @@
   </script>
 
 
-  <meta property="og:url" value="http://wwojcik.github.comtags/php/index.html">
+  <meta property="og:url" value="http://wwojcik.github.com/blog/2012/10/02/switch-user-z-wykorzystaniem-knpmenu-i-bootstrap-twitter-w-symfony2/">
 <meta property="fb:app_id" content="432300816808833">
 
-<meta property="og:title" value="Tag: php">
-<meta property="og:description" value="Tag: php">
+<meta property="og:title" value="Switch user z wykorzystaniem KnpMenu i Bootstrap Twitter w Symfony2">
+<meta property="og:description" value="">
 <meta property="og:type" content="article"/>
  
 
@@ -106,41 +107,177 @@
         <div class="row">
   <div class="span8">
     
-      <div class="page-header">
-        <h1>Tag: php</h1>
-        
-      </div>
+  <header>
     
+      <h1 class="entry-title">Switch user z wykorzystaniem KnpMenu i Bootstrap Twitter w Symfony2</h1>
+    
+    
+      <p class="meta">
+        
 
-    <div id="blog-archives" class="tag">
+
+
+
+
 
 
 
   
-  <h2>2012</h2>
 
-<article>
-  <td class="day">
-  <h3><small><time datetime="2012-09-07T12:45:00+02:00" pubdate><span class='month'>Sep</span> <span class='day'>07</span></time></small></h3>
-</td>
-<td>
-  
-  <h3><a href="/blog/2012/09/07/wydano-symfony-2-dot-1/">Wydano Symfony 2.1</a></h3>
-  
-  <h3><small>opublikowano <a class='category' href='/blog/categories/symfony/'>Symfony</a></small></h3>
-  
-</td>
 
-</article>
+<time datetime="2012-10-02T09:07:00+02:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  
+  
+  <div class="entry-content"><p>Pisząc projekt w Symfony, który korzysta w BootStrap Twitter może przydać nam się możliwość zmiany użytkownika z poziomu menu.
+Znaleziony gist pokazjue jak taki efekt możemy uzyskać.</p>
+
+<!-- more -->
+
+
+<div><script src='https://gist.github.com/1770582.js?file='></script>
+<noscript><pre><code>&lt;?php
+
+namespace Ormigo\Bundle\BackofficeBundle\Menu;
+
+use Knp\Menu\FactoryInterface;
+use Symfony\Component\DependencyInjection\ContainerAware;
+
+use Ormigo\Bundle\UserBundle\Model\User\UserQuery;
+use Symfony\Component\Security\Core\Role\SwitchUserRole;
+
+class Builder extends ContainerAware
+{
+    public function mainMenu(FactoryInterface $factory)
+    {
+        $menu = $factory-&gt;createItem('root');
+        $menu-&gt;setCurrentUri($this-&gt;container-&gt;get('request')-&gt;getRequestUri());
+
+        $menu-&gt;addChild('Dashboard', array(
+            'uri' =&gt; '#',
+        ));
+        $menu-&gt;addChild('Demo View', array(
+            'route' =&gt; 'demo',
+        ));
+
+        return $menu;
+    }
+
+    public function switchUserMenu(FactoryInterface $factory)
+    {
+        $menu = $factory-&gt;createItem('root');
+        $menu-&gt;setAttributes(array(
+            'class' =&gt; 'pull-right',
+            'dropdown' =&gt; true,
+            'divider_append' =&gt; true,
+        ));
+        $menu-&gt;setLabel('Switch User');
+
+        $securityContext = $this-&gt;container-&gt;get('security.context');
+        if ($securityContext-&gt;isGranted('ROLE_ALLOWED_TO_SWITCH') or $securityContext-&gt;isGranted('ROLE_PREVIOUS_ADMIN')) {
+            // The current (may be switched) username.
+            $username = $securityContext-&gt;getToken()-&gt;getUser()-&gt;getUsername();
+
+            // The actual user, if switched, retrieve the correct one.
+            $actualUser = $securityContext-&gt;getToken()-&gt;getUser();
+            foreach ($securityContext-&gt;getToken()-&gt;getRoles() as $role) {
+                if ($role instanceof SwitchUserRole) {
+                    $actualUser = $role-&gt;getSource();
+                    break;
+                }
+            }
+
+            foreach (UserQuery::create()-&gt;find() as $eachUser) {
+                // only show links to different users
+                if ($username !== $eachUser-&gt;getUsername()) {
+                    $menu-&gt;addChild($eachUser-&gt;getUsername(), array('uri' =&gt; '?_switch_user='.$eachUser-&gt;getUsername()));
+                }
+            }
+
+            $menu-&gt;addChild($actualUser-&gt;getUsername(), array('uri' =&gt; '?_switch_user=_exit'));
+        }
+
+        return $menu;
+    }
+}</code></pre></noscript></div>
+
+
 
 </div>
 
+  
 
+
+    <footer>
+      <p class="meta">
+        
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Wojciech Wójcik</span></span>
+
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-02T09:07:00+02:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2012</time>
+        
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/symfony/'>Symfony</a>
+  
+</span>
+
+
+      </p>
+      
+        <div class="sharing">
+  <br/>
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://wwojcik.github.com/blog/2012/10/02/switch-user-z-wykorzystaniem-knpmenu-i-bootstrap-twitter-w-symfony2/" data-via="wojtaswojcik" data-counturl="http://wwojcik.github.com/blog/2012/10/02/switch-user-z-wykorzystaniem-knpmenu-i-bootstrap-twitter-w-symfony2/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+      
+      <p class="meta">
+        
+          <a class="basic-alignment left" href="/blog/2012/09/07/znamy-date-wydania-titanium-sdk-3-dot-0/" title="Previous Post: Znamy datę wydania Titanium SDK 3.0">&laquo; Znamy datę wydania Titanium SDK 3.0</a>
+        
+        
+      </p>
+    </footer>
     
-
+    
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+      </section>
     
   </div>
 
+  
   <div class="span4 sidebar">
     <div class="well">
       
@@ -176,7 +313,7 @@
 </section>
 <section>
   <h1>Tag</h1>
-    <span id="tag-cloud"><span class='rank-5'><a href='/tags/Rest'>Rest</a></span> <span class='rank-5'><a href='/tags/Google'>Google</a></span> <span class='rank-5'><a href='/tags/SAP'>SAP</a></span> <span class='rank-3'><a href='/tags/RoR'>RoR</a></span> <span class='rank-5'><a href='/tags/php'>php</a></span> <span class='rank-4'><a href='/tags/iphone'>iphone</a></span> <span class='rank-5'><a href='/tags/sip'>sip</a></span> <span class='rank-5'><a href='/tags/titanium'>titanium</a></span> <span class='rank-5'><a href='/tags/Heroku'>Heroku</a></span> <span class='rank-5'><a href='/tags/foursquere'>foursquere</a></span> <span class='rank-5'><a href='/tags/javascript'>javascript</a></span> <span class='rank-4'><a href='/tags/gist'>gist</a></span> <span class='rank-5'><a href='/tags/Nginx'>Nginx</a></span> <span class='rank-5'><a href='/tags/MacOS'>MacOS</a></span> <span class='rank-2'><a href='/tags/Titanium'>Titanium</a></span> <span class='rank-5'><a href='/tags/macos'>macos</a></span> <span class='rank-4'><a href='/tags/android'>android</a></span> <span class='rank-5'><a href='/tags/git'>git</a></span> <span class='rank-1'><a href='/tags/Symfony'>Symfony</a></span> </span>
+    <span id="tag-cloud"><span class='rank-5'><a href='/tags/sip'>sip</a></span> <span class='rank-5'><a href='/tags/git'>git</a></span> <span class='rank-5'><a href='/tags/javascript'>javascript</a></span> <span class='rank-5'><a href='/tags/SAP'>SAP</a></span> <span class='rank-4'><a href='/tags/gist'>gist</a></span> <span class='rank-5'><a href='/tags/Nginx'>Nginx</a></span> <span class='rank-5'><a href='/tags/titanium'>titanium</a></span> <span class='rank-5'><a href='/tags/Heroku'>Heroku</a></span> <span class='rank-4'><a href='/tags/iphone'>iphone</a></span> <span class='rank-5'><a href='/tags/foursquere'>foursquere</a></span> <span class='rank-5'><a href='/tags/macos'>macos</a></span> <span class='rank-1'><a href='/tags/Symfony'>Symfony</a></span> <span class='rank-5'><a href='/tags/php'>php</a></span> <span class='rank-5'><a href='/tags/Rest'>Rest</a></span> <span class='rank-5'><a href='/tags/Google'>Google</a></span> <span class='rank-4'><a href='/tags/android'>android</a></span> <span class='rank-3'><a href='/tags/RoR'>RoR</a></span> <span class='rank-5'><a href='/tags/MacOS'>MacOS</a></span> <span class='rank-2'><a href='/tags/Titanium'>Titanium</a></span> </span>
 </section>
 
 <section>
@@ -237,6 +374,8 @@
   </div>
 
 </div>
+
+
       </div>
     </div>
     <footer class="footer"><p>
@@ -253,7 +392,10 @@
       var disqus_shortname = 'wojciechwojcikblog';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://wwojcik.github.com/blog/2012/10/02/switch-user-z-wykorzystaniem-knpmenu-i-bootstrap-twitter-w-symfony2/';
+        var disqus_url = 'http://wwojcik.github.com/blog/2012/10/02/switch-user-z-wykorzystaniem-knpmenu-i-bootstrap-twitter-w-symfony2/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

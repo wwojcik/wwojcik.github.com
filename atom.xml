@@ -4,7 +4,7 @@
   <title><![CDATA[Wojciech Wójcik]]></title>
   <link href="http://wwojcik.github.com/atom.xml" rel="self"/>
   <link href="http://wwojcik.github.com/"/>
-  <updated>2012-09-07T13:33:36+02:00</updated>
+  <updated>2012-10-02T09:13:09+02:00</updated>
   <id>http://wwojcik.github.com/</id>
   <author>
     <name><![CDATA[Wojciech Wójcik]]></name>
@@ -12,6 +12,88 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Switch user z wykorzystaniem KnpMenu i Bootstrap Twitter w Symfony2]]></title>
+    <link href="http://wwojcik.github.com/blog/2012/10/02/switch-user-z-wykorzystaniem-knpmenu-i-bootstrap-twitter-w-symfony2/"/>
+    <updated>2012-10-02T09:07:00+02:00</updated>
+    <id>http://wwojcik.github.com/blog/2012/10/02/switch-user-z-wykorzystaniem-knpmenu-i-bootstrap-twitter-w-symfony2</id>
+    <content type="html"><![CDATA[<p>Pisząc projekt w Symfony, który korzysta w BootStrap Twitter może przydać nam się możliwość zmiany użytkownika z poziomu menu.
+Znaleziony gist pokazjue jak taki efekt możemy uzyskać.</p>
+
+<!-- more -->
+
+
+<div><script src='https://gist.github.com/1770582.js?file='></script>
+<noscript><pre><code>&lt;?php
+
+namespace Ormigo\Bundle\BackofficeBundle\Menu;
+
+use Knp\Menu\FactoryInterface;
+use Symfony\Component\DependencyInjection\ContainerAware;
+
+use Ormigo\Bundle\UserBundle\Model\User\UserQuery;
+use Symfony\Component\Security\Core\Role\SwitchUserRole;
+
+class Builder extends ContainerAware
+{
+    public function mainMenu(FactoryInterface $factory)
+    {
+        $menu = $factory-&gt;createItem('root');
+        $menu-&gt;setCurrentUri($this-&gt;container-&gt;get('request')-&gt;getRequestUri());
+
+        $menu-&gt;addChild('Dashboard', array(
+            'uri' =&gt; '#',
+        ));
+        $menu-&gt;addChild('Demo View', array(
+            'route' =&gt; 'demo',
+        ));
+
+        return $menu;
+    }
+
+    public function switchUserMenu(FactoryInterface $factory)
+    {
+        $menu = $factory-&gt;createItem('root');
+        $menu-&gt;setAttributes(array(
+            'class' =&gt; 'pull-right',
+            'dropdown' =&gt; true,
+            'divider_append' =&gt; true,
+        ));
+        $menu-&gt;setLabel('Switch User');
+
+        $securityContext = $this-&gt;container-&gt;get('security.context');
+        if ($securityContext-&gt;isGranted('ROLE_ALLOWED_TO_SWITCH') or $securityContext-&gt;isGranted('ROLE_PREVIOUS_ADMIN')) {
+            // The current (may be switched) username.
+            $username = $securityContext-&gt;getToken()-&gt;getUser()-&gt;getUsername();
+
+            // The actual user, if switched, retrieve the correct one.
+            $actualUser = $securityContext-&gt;getToken()-&gt;getUser();
+            foreach ($securityContext-&gt;getToken()-&gt;getRoles() as $role) {
+                if ($role instanceof SwitchUserRole) {
+                    $actualUser = $role-&gt;getSource();
+                    break;
+                }
+            }
+
+            foreach (UserQuery::create()-&gt;find() as $eachUser) {
+                // only show links to different users
+                if ($username !== $eachUser-&gt;getUsername()) {
+                    $menu-&gt;addChild($eachUser-&gt;getUsername(), array('uri' =&gt; '?_switch_user='.$eachUser-&gt;getUsername()));
+                }
+            }
+
+            $menu-&gt;addChild($actualUser-&gt;getUsername(), array('uri' =&gt; '?_switch_user=_exit'));
+        }
+
+        return $menu;
+    }
+}</code></pre></noscript></div>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Znamy datę wydania Titanium SDK 3.0]]></title>
@@ -514,71 +596,6 @@ echo &quot;app/cache &amp; app/logs been properly chmod'ed for $USER and $APACHE
     <updated>2012-07-31T08:27:00+02:00</updated>
     <id>http://wwojcik.github.com/blog/2012/07/31/konfiguracja-serwera-nginx-dla-projektow-w-symfony</id>
     <content type="html"><![CDATA[<p>Na tej <a href=http://wiki.nginx.org/Symfony>stronie</a> można zobaczyć jak przygotować serwer Nginx dla projektów stworzonych w Symfony i Symfony2.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Oceń aplikacje dla Titanium Mobile]]></title>
-    <link href="http://wwojcik.github.com/blog/2012/07/30/ocen-aplikacje-dla-titanium-mobile/"/>
-    <updated>2012-07-30T19:04:00+02:00</updated>
-    <id>http://wwojcik.github.com/blog/2012/07/30/ocen-aplikacje-dla-titanium-mobile</id>
-    <content type="html"><![CDATA[<p>W taki prosty sposób można dorobić obsługę Rate my application.
-Po drugim uruchomieniu aplikacji pojawia się  zapytanie o chęć oceny aplikacji.
-Kolejna prośba po naciśnięciu Remind Me Later pojawi się kolejnego dnia.</p>
-
-<!-- more -->
-
-
-<div><script src='https://gist.github.com/1011043.js?file='></script>
-<noscript><pre><code>/**
- * The following snippet will ask the user to rate your app the second time they launch it.
- * It lets the user rate it now, &quot;Remind Me Later&quot; or never rate the app.
- */
-var win = Ti.UI.createWindow({ backgroundColor: '#fff' });
-win.addEventListener('open', checkReminderToRate);
-win.add(Ti.UI.createLabel({ text: 'This is a simple app that will remind you to rate it.' }));
-win.open();
-
-function checkReminderToRate() {
-    var now = new Date().getTime();
-    var remindToRate = Ti.App.Properties.getString('RemindToRate');
-    if (!remindToRate) {
-        Ti.App.Properties.setString('RemindToRate', now);
-    }
-    else if (remindToRate &lt; now) {
-        var alertDialog = Titanium.UI.createAlertDialog({
-            title: 'Please rate this app!',
-            message: 'Would you take a moment to rate this app?',
-            buttonNames: ['OK', 'Remind Me Later', 'Never'],
-            cancel: 2
-        });
-        alertDialog.addEventListener('click', function(evt) {
-            switch (evt.index) {
-                case 0:
-                    Ti.App.Properties.setString('RemindToRate', Number.MAX_VALUE);
-                    // NOTE: replace this with your own iTunes link; also, this won't WON'T WORK IN THE SIMULATOR!
-                    if (Ti.Android) {
-                        Ti.Platform.openURL('URL TO YOUR APP IN THE GOOGLE MARKETPLACE');
-                    }
-                    else {
-                        Ti.Platform.openURL('URL TO YOUR APP IN THE ITUNES STORE');
-                    }
-                    break;
-                case 1:
-                    // &quot;Remind Me Later&quot;? Ok, we'll remind them tomorrow when they launch the app.
-                    Ti.App.Properties.setString('RemindToRate', now + (1000 * 60 * 60 * 24));
-                    break;
-                case 2:
-                    Ti.App.Properties.setString('RemindToRate', Number.MAX_VALUE);
-                    break;
-            }
-        });
-        alertDialog.show();
-    }
-}</code></pre></noscript></div>
-
-
-
 ]]></content>
   </entry>
   
