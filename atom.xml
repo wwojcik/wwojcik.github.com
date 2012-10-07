@@ -4,7 +4,7 @@
   <title><![CDATA[Wojciech Wójcik]]></title>
   <link href="http://wwojcik.github.com/atom.xml" rel="self"/>
   <link href="http://wwojcik.github.com/"/>
-  <updated>2012-10-02T09:13:09+02:00</updated>
+  <updated>2012-10-07T09:19:12+02:00</updated>
   <id>http://wwojcik.github.com/</id>
   <author>
     <name><![CDATA[Wojciech Wójcik]]></name>
@@ -12,6 +12,35 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Jak używać geofencing w projekcie Titanium]]></title>
+    <link href="http://wwojcik.github.com/blog/2012/10/07/jak-uzywac-geofencing-w-projekcie-titanium/"/>
+    <updated>2012-10-07T09:14:00+02:00</updated>
+    <id>http://wwojcik.github.com/blog/2012/10/07/jak-uzywac-geofencing-w-projekcie-titanium</id>
+    <content type="html"><![CDATA[<p>Prosty przykład w jaki sposób obsłużyć geofencing w aplikacjach mobilnych zbudowanych w wykorzystaniem Titanium SDK.</p>
+
+<!-- more -->
+
+
+<div><script src='https://gist.github.com/1830512.js?file='></script>
+<noscript><pre><code>// you probably want to keep track of the backgrounding state of the app to respond differently
+
+var backgrounded = false;
+Ti.App.addEventListener('pause', function() {
+  backgrounded = true;
+});
+Ti.App.addEventListener('resume', function() {
+  backgrounded = false;
+});
+Ti.App.addEventListener('resumed', function() {
+  backgrounded = false;
+});</code></pre></noscript></div>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Switch user z wykorzystaniem KnpMenu i Bootstrap Twitter w Symfony2]]></title>
@@ -587,15 +616,6 @@ sudo chmod +a &quot;$APACHE_USER allow delete,write,append,file_inherit,director
 
 echo &quot;app/cache &amp; app/logs been properly chmod'ed for $USER and $APACHE_USER&quot;</code></pre></noscript></div>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Konfiguracja serwera NGINX dla projektów w Symfony]]></title>
-    <link href="http://wwojcik.github.com/blog/2012/07/31/konfiguracja-serwera-nginx-dla-projektow-w-symfony/"/>
-    <updated>2012-07-31T08:27:00+02:00</updated>
-    <id>http://wwojcik.github.com/blog/2012/07/31/konfiguracja-serwera-nginx-dla-projektow-w-symfony</id>
-    <content type="html"><![CDATA[<p>Na tej <a href=http://wiki.nginx.org/Symfony>stronie</a> można zobaczyć jak przygotować serwer Nginx dla projektów stworzonych w Symfony i Symfony2.</p>
 ]]></content>
   </entry>
   

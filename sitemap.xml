@@ -105,15 +105,21 @@
         <lastmod>2012-10-02T09:12:28+02:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://wwojcik.github.com/blog/2012/10/07/jak-uzywac-geofencing-w-projekcie-titanium/
+        </loc>
+        <lastmod>2012-10-07T09:18:46+02:00</lastmod>
+    </url>
+    <url>
         <loc>http://wwojcik.github.com/404.html</loc>
         <lastmod>2012-08-05T22:54:27+02:00</lastmod>
     </url>
     <url>
         <loc>http://wwojcik.github.com/blog/archives/</loc>
-        <lastmod>2012-10-02T09:12:28+02:00</lastmod>
+        <lastmod>2012-10-07T09:18:46+02:00</lastmod>
     </url>
     <url>
         <loc>http://wwojcik.github.com/</loc>
-        <lastmod>2012-10-02T09:12:28+02:00</lastmod>
+        <lastmod>2012-10-07T09:18:46+02:00</lastmod>
     </url>
 </urlset>

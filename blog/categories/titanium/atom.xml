@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Titanium | Wojciech Wójcik]]></title>
   <link href="http://wwojcik.github.com/blog/categories/titanium/atom.xml" rel="self"/>
   <link href="http://wwojcik.github.com/"/>
-  <updated>2012-10-02T09:13:09+02:00</updated>
+  <updated>2012-10-07T09:19:12+02:00</updated>
   <id>http://wwojcik.github.com/</id>
   <author>
     <name><![CDATA[Wojciech Wójcik]]></name>
@@ -12,6 +12,33 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Jak używać geofencing w projekcie Titanium]]></title>
+    <link href="http://wwojcik.github.com/blog/2012/10/07/jak-uzywac-geofencing-w-projekcie-titanium/"/>
+    <updated>2012-10-07T09:14:00+02:00</updated>
+    <id>http://wwojcik.github.com/blog/2012/10/07/jak-uzywac-geofencing-w-projekcie-titanium</id>
+    <content type="html"><![CDATA[<p>Prosty przykład w jaki sposób obsłużyć geofencing w aplikacjach mobilnych zbudowanych w wykorzystaniem Titanium SDK.</p>
+
+<!-- more -->
+
+
+<p><div><script src='https://gist.github.com/1830512.js?file='></script>
+<noscript><pre><code>// you probably want to keep track of the backgrounding state of the app to respond differently
+
+var backgrounded = false;
+Ti.App.addEventListener('pause', function() {
+  backgrounded = true;
+});
+Ti.App.addEventListener('resume', function() {
+  backgrounded = false;
+});
+Ti.App.addEventListener('resumed', function() {
+  backgrounded = false;
+});</code></pre></noscript></div>
+</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Znamy datę wydania Titanium SDK 3.0]]></title>
@@ -304,20 +331,6 @@ function showDialog(args) {
 	return dialog;
 };</code></pre></noscript></div>
 </p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Wydano Titanium Mobile SDK 2.1.1]]></title>
-    <link href="http://wwojcik.github.com/blog/2012/08/01/wydano-titanium-mobile-sdk-2-dot-1-1/"/>
-    <updated>2012-08-01T23:40:00+02:00</updated>
-    <id>http://wwojcik.github.com/blog/2012/08/01/wydano-titanium-mobile-sdk-2-dot-1-1</id>
-    <content type="html"><![CDATA[<p>Pojawiła się kolejna wersja Titanium Mobile SDK oznaczona jako 2.1.1.</p>
-
-<p>Wraz z nią poprawniono 30 zgłoszonych błędów jak również dodano nowe funkcjonalności np.
-ACS wprowadził  Friends, Events, Files, and Messages APIs.</p>
-
-<p>Pełna lista zmian znajduje się pod tym <a href="http://docs.appcelerator.com/titanium/release-notes/?version=2.1.1.GA">adresem</a>.</p>
 ]]></content>
   </entry>
   
